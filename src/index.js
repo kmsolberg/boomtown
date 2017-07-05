@@ -10,13 +10,15 @@ import muiTheme from './config/theme';
 import Layout from './components/Layout';
 import Login from './containers/Login';
 import Items from './containers/Items/';
+import NotFound from './containers/NotFound/';
+import Profile from './containers/Profile/';
 
 injectTapEventPlugin();
 
 const Boomtown = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <Layout>
-            <Items />
+            <Profile />
         </Layout>
     </MuiThemeProvider>
 

@@ -12,13 +12,14 @@ import Login from './containers/Login';
 import Items from './containers/Items/';
 import NotFound from './containers/NotFound/';
 import Profile from './containers/Profile/';
+import Share from './containers/Share/';
 
 injectTapEventPlugin();
 
 const Boomtown = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <Layout>
-            <Profile />
+            <Share />
         </Layout>
     </MuiThemeProvider>
 

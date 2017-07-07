@@ -1,6 +1,11 @@
 import React from 'react';
 import { Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import Gravatar from 'react-gravatar'
+import Gravatar from 'react-gravatar';
+
+import './style.css';
+
+const moment = require('moment');
+moment().format();
 
 const ItemCard = ({ itemData }) => (
     <li className="itemCardWrapper">
@@ -10,11 +15,11 @@ const ItemCard = ({ itemData }) => (
             </CardMedia>
             <CardHeader
                 title={itemData.itemOwner.fullName}
-                subtitle="Subtitle"
-                avatar={<Gravatar email={itemData.itemOwner.email} />}
+                subtitle={moment().startOf('hour').fromNow()}
+                avatar={<Gravatar email={itemData.itemOwner.email} className="gravatar-img" />}
             />
 
-            <CardTitle title={itemData.title} subtitle="Card subtitle" />
+            <CardTitle title={itemData.title} />
             <CardText>
                 {itemData.description}
             </CardText>

@@ -35,11 +35,9 @@ class ItemsContainer extends Component {
     render() {
         if (this.state.loading) return <Loader />;
         return (
-            <div>
-                <Items
-                    itemsData={this.state.itemsData}
-                />
-            </div>
+            <Items
+                itemsData={this.state.itemsData}
+            />
         );
     }
 }

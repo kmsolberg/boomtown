@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Masonry from 'react-masonry-component';
 
 import ItemCard from '../ItemCard/';
+import './style.css';
 
 
 // Masonry
 
 const ItemCardList = ({ itemsData }) => (
-    <ul>
+    <Masonry
+        className={'itemCardListWrapper'}
+        elementType={'ul'}
+    >
         { itemsData.map((item) => (
             <ItemCard itemData={item} key={item.id} />
         )) }
-    </ul>
+    </Masonry>
 );
 
 ItemCardList.propTypes = {

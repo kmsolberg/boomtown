@@ -4,9 +4,7 @@ import ItemCardList from '../../components/ItemCardList/';
 import './style.css';
 
 const Items = ({ itemsData }) => (
-    <div>
-        <ItemCardList itemsData={itemsData} />
-    </div>
+    <ItemCardList itemsData={itemsData} />
 );
 
 export default Items;

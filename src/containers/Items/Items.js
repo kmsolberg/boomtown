@@ -1,16 +1,12 @@
 import React from 'react';
+import ItemCardList from '../../components/ItemCardList/';
 
 import './style.css';
 
 const Items = ({ itemsData }) => (
-    <ul>
-        { itemsData.map((item) => (
-            <li key={item.id}>
-                {item.title}
-                {item.description}
-            </li>
-        )) }
-    </ul>
+    <div>
+        <ItemCardList itemsData={itemsData} />
+    </div>
 );
 
 export default Items;

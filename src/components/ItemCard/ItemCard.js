@@ -7,6 +7,9 @@ import './style.css';
 const moment = require('moment');
 moment().format();
 
+// let timeAdded = moment().unix(itemData.createdOn);
+
+
 const ItemCard = ({ itemData }) => (
     <li className="itemCardWrapper">
         <Card>
@@ -15,7 +18,7 @@ const ItemCard = ({ itemData }) => (
             </CardMedia>
             <CardHeader
                 title={itemData.itemOwner.fullName}
-                subtitle={moment().startOf('hour').fromNow()}
+                subtitle={(moment.unix(itemData.createdOn)).fromNow()}
                 avatar={<Gravatar email={itemData.itemOwner.email} className="gravatar-img" />}
             />
 

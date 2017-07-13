@@ -6,10 +6,13 @@ import {
     } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { Provider } from 'react-redux';
+
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 import muiTheme from './config/theme';
+import store from './redux/store';
 
 import Layout from './components/Layout';
 import Login from './containers/Login';
@@ -24,11 +27,13 @@ injectTapEventPlugin();
 const Boomtown = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
             {/*<Items />*/}
-        <Router>
-            <Layout>
-                <Routes />
-            </Layout>
-        </Router>
+        <Provider store={store}>
+            <Router>
+                <Layout>
+                    <Routes />
+                </Layout>
+            </Router>
+        </Provider>
     </MuiThemeProvider>
 
 );

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import Gravatar from 'react-gravatar';
 
 import './style.css';
 
 const moment = require('moment');
 moment().format();
-
-// let timeAdded = moment().unix(itemData.createdOn);
-
 
 const ItemCard = ({ itemData }) => (
     <li className="itemCardWrapper">
@@ -22,10 +20,19 @@ const ItemCard = ({ itemData }) => (
                 avatar={<Gravatar email={itemData.itemOwner.email} className="gravatar-img" />}
             />
 
-            <CardTitle title={itemData.title} />
+            <CardTitle
+                title={itemData.title}
+                subtitle={itemData.tags}
+            />
             <CardText>
                 {itemData.description}
             </CardText>
+            <FlatButton
+                label="BORROW"
+                backgroundColor="black"
+                hoverColor="grey"
+                className="borrow-button"
+            />
         </Card>
     </li>
 );

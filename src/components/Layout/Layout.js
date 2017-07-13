@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import SelectField from 'material-ui/SelectField';
-import icon from '../../images/home-tr.svg';
+
+import Header from '../Header/Header';
 
 import './styles.css';
 
 const Layout = ({ children }) => (
     <div className="appContentWrapper">
         <div className="appHeader">
-            <AppBar
-                iconElementLeft={<SelectField />}
-                iconElementRight={<FlatButton label="Logout" />}
-            />
+            <Header />
         </div>
         <div className="appContent">
             {children}
         </div>
-        {/* And a footer here, but not on the login route... */}
+        <p className="footer-text">
+            © 2017 Boomtown Corp. All Rights Reserved
+        </p>
     </div>
 );
 

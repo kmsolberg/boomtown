@@ -33,12 +33,10 @@ export function itemsReducer(state = initialState, action) {
     switch (action.type) {
 
     case LOAD_ITEMS:
-        const stateWithItems = {
+        return {
             loading: false,
             itemsData: action.payload
         };
-        return stateWithItems;
-
     default:
         return state;
     }

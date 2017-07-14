@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Loader from '../../components/Loader/';
 import Items from './Items';
-import { fetchItems } from '../../redux/actions';
+import { fetchItems } from '../../redux/modules/items';
 
 class ItemsContainer extends Component {
 

@@ -1,12 +1,4 @@
-// Initial state: loading true
-// fetch from json 
-//      state changes to loading false
-// load items
-
-// xport const FETCH_ITEMS = 'FETCH_ITEMS';
-export const LOAD_ITEMS = 'LOAD_ITEMS';
-
-//ACTION CREATOR
+const LOAD_ITEMS = 'LOAD_ITEMS';
 
 export function loadItems(itemsWithOwners) {
     return {
@@ -15,6 +7,7 @@ export function loadItems(itemsWithOwners) {
     };
 }
 
+// THIS IS A THUNK
 export function fetchItems() {
     return function (dispatch) {
         Promise.all(['http://localhost:3001/items', 'http://localhost:3001/users'].map(url => (
@@ -29,4 +22,24 @@ export function fetchItems() {
             dispatch(loadItems(itemsWithOwners));
         });
     };
+}
+
+const initialState = {
+    loading: true,
+    itemsData: []
+};
+
+export function itemsReducer(state = initialState, action) {
+    switch (action.type) {
+
+    case LOAD_ITEMS:
+        const stateWithItems = {
+            loading: false,
+            itemsData: action.payload
+        };
+        return stateWithItems;
+
+    default:
+        return state;
+    }
 }

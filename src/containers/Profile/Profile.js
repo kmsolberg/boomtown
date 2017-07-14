@@ -1,13 +1,13 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Gravatar from 'react-gravatar';
 
 import './style.css';
 
-const Profile = ({ user }) => (
+const Profile = ({ }) => (
     <Card
         className="profile-card"
-        users={user}
+        users="me!"
     >
         <CardHeader
             title="My Name"

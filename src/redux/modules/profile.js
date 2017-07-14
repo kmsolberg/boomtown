@@ -7,19 +7,25 @@ export function loadUsers(userData) {
     };
 }
 
-export function fetchProfile() {
+export function fetchProfile(userId) {
     return function (dispatch) {
-        Promise.all(['http://localhost:3001/items', 'http://localhost:3001/users'].map(url => (
-            fetch(url).then(response => response.json())
-        ))).then(json => {
-            const [items, users] = json;
-            const userData = users.map(user => {
-                return user;
-            });
+        fetch(`http://localhost:3001/users/${userId}`)
+        .then(response => response.json())
+        .then(userData => {
             dispatch(loadUsers(userData));
         });
     };
 }
+
+
+// .then((response) => response.json())
+//       .then((responseJson) => {
+//         return responseJson.movies;
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   }
 
 const initialState = {
     loading: true,

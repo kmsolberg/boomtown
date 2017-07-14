@@ -8,7 +8,7 @@ import { fetchProfile } from '../../redux/modules/profile';
 class ProfileContainer extends Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchProfile());
+        this.props.dispatch(fetchProfile(this.props.match.params.id));
     }
 
     render() {

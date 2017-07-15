@@ -13,7 +13,7 @@ const ItemCardList = ({ itemsData }) => (
         className={'itemCardListWrapper'}
         elementType={'ul'}
     >
-        { itemsData.map((item) => (
+        { itemsData && itemsData.map((item) => (
             <ItemCard itemData={item} key={item.id} />
         )) }
     </Masonry>

@@ -8,17 +8,23 @@ export function loadItems(itemsWithOwners) {
 }
 
 // THIS IS A THUNK
-export function fetchItems() {
+export function fetchItems(userId) {
     return function (dispatch) {
         Promise.all(['http://localhost:3001/items', 'http://localhost:3001/users'].map(url => (
             fetch(url).then(response => response.json())
         ))).then(json => {
             const [items, users] = json;
-            const itemsWithOwners = items.map(item => {
+            let itemsWithOwners = items.map(item => {
                 const itemOwner = users.filter(user => user.id === item.itemOwner);
                 item.itemOwner = itemOwner[0];
                 return item;
             });
+            if (userId) {
+                itemsWithOwners = itemsWithOwners.filter(item => {
+                    return item.itemOwner.id === userId;
+                });
+            }
+             //TODO filter our items with userId
             dispatch(loadItems(itemsWithOwners));
         });
     };

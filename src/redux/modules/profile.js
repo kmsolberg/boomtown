@@ -17,16 +17,6 @@ export function fetchProfile(userId) {
     };
 }
 
-
-// .then((response) => response.json())
-//       .then((responseJson) => {
-//         return responseJson.movies;
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//       });
-//   }
-
 const initialState = {
     loading: true,
     usersData: []

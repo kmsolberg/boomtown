@@ -17,6 +17,10 @@ export function fetchItems(userId) {
             let itemsWithOwners = items.map(item => {
                 const itemOwner = users.filter(user => user.id === item.itemOwner);
                 item.itemOwner = itemOwner[0];
+                if (item.borrower) {
+                    const borrower = users.filter(user => user.id === item.borrower);
+                    item.borrower= borrower[0];
+                }
                 return item;
             });
             if (userId) {
@@ -24,7 +28,6 @@ export function fetchItems(userId) {
                     return item.itemOwner.id === userId;
                 });
             }
-             //TODO filter our items with userId
             dispatch(loadItems(itemsWithOwners));
         });
     };

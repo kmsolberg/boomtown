@@ -1,25 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import icon from '../../images/boomtown-logo.svg';
-import SvgIcon from 'material-ui/SvgIcon';
 
 import './style.css';
-
-// const HomeIcon = (props) => (
-//     <SvgIcon {...props}>
-//         <icon />
-//     </SvgIcon>
-// );
 
 const Header = () => (
     <AppBar
         style={{ 'background-color': 'white' }}
         iconElementLeft={
             <div>
-                <img src={icon} alt="boomtown logo" className="logo" />
+                <Link to={'/'} >
+                    <img src={icon} alt="boomtown logo" className="logo" />
+                </Link>
                 <SelectField />
             </div>
         }

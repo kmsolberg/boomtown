@@ -1,4 +1,29 @@
 .profile-card {
-    width: 65%;
-    margin: auto;
+    width: 70%;
+    margin: 3rem auto 2rem auto;
+}
+
+.itemCardListWrapper {
+   width: 100%;
+}
+
+.itemCardWrapper {
+   padding: 1%;
+   width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+   .itemCardWrapper {
+       width: 50%;
+   }
+}
+
+@media only screen and (min-width: 960px) {
+   .itemCardWrapper {
+       width: 33%;
+   }
+}
+
+.profile-page {
+    width: 100%;
 }

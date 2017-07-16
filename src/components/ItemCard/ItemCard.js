@@ -32,12 +32,14 @@ const ItemCard = ({ itemData }) => (
                 {itemData.description}
             </CardText>
             itemData.available.length &&
+            <div className="borrow-button">
                 <FlatButton
                     label="BORROW"
-                    backgroundColor="black"
+                    backgroundColor="rgb(38, 50, 56)"
                     hoverColor="grey"
-                    className="borrow-button"
+                    className="borrow-btn"
                 />
+            </div>
         </Card>
     </li>
 );

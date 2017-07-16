@@ -15,3 +15,9 @@
 .footer-text {
   text-align: center;
 }
+
+.share-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}

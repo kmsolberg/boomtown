@@ -19,14 +19,12 @@ export function fetchItems(userId) {
                 item.itemOwner = itemOwner[0];
                 if (item.borrower) {
                     const borrower = users.filter(user => user.id === item.borrower);
-                    item.borrower= borrower[0];
+                    item.borrower = borrower[0];
                 }
                 return item;
             });
             if (userId) {
-                itemsWithOwners = itemsWithOwners.filter(item => {
-                    return item.itemOwner.id === userId;
-                });
+                itemsWithOwners = itemsWithOwners.filter(item => item.itemOwner.id === userId);
             }
             dispatch(loadItems(itemsWithOwners));
         });

@@ -1,3 +1,18 @@
 .logo {
-    height: 2.5rem;
+    height: 2rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 14rem;
+    margin-top: 0.3rem;
+}
+
+.logo-select {
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+    margin-left: 1rem;
+    align-items: center;
 }

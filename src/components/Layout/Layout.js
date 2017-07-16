@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import Header from '../Header/Header';
 
@@ -12,6 +14,13 @@ const Layout = ({ children }) => (
         </div>
         <div className="appContent">
             {children}
+            <FloatingActionButton
+                backgroundColor="rgb(38, 50, 56)"
+                className="share-button"
+                zDepth="10"
+            >
+                <ContentAdd />
+            </FloatingActionButton>
         </div>
         <p className="footer-text">
             © 2017 Boomtown Corp. All Rights Reserved

@@ -1,3 +1,7 @@
-.borrow-button span {
+.borrow-btn span {
     color: white;
+}
+
+.borrow-button {
+    padding: 6px;
 }

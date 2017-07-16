@@ -1,0 +1,23 @@
+.profile-name {
+    width: 20rem;
+}
+
+.profile-name h2{
+    font-size: 2.5rem;
+}
+
+.profile-card p{
+    color: rgba(38, 50, 56, 0.54);
+}
+
+.profile-wrapper {
+    display: flex;
+    justify-content: space-around;
+    height: 15rem;
+    margin: 0 2rem;
+    padding-top: 2rem;
+}
+
+.profile-gravatar {
+    border-radius: 100px;
+}

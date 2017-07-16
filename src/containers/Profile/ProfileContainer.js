@@ -17,7 +17,7 @@ class ProfileContainer extends Component {
     render() {
         if (this.props.loading) return <Loader />;
         return (
-            <div>
+            <div className="profile-page">
                 <Profile
                     usersData={this.props.usersData}
                 />

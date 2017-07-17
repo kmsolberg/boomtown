@@ -17,7 +17,6 @@ const Layout = ({ children }) => (
             <FloatingActionButton
                 backgroundColor="rgb(38, 50, 56)"
                 className="share-button"
-                zDepth="10"
             >
                 <ContentAdd />
             </FloatingActionButton>

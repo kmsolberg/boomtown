@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 import Gravatar from 'react-gravatar';
-import Avatar from 'material-ui/Avatar';
 
 import './style.css';
 

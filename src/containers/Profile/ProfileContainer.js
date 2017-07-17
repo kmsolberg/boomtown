@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Profile from './Profile';
 import Loader from '../../components/Loader/';
@@ -26,6 +27,12 @@ class ProfileContainer extends Component {
         );
     }
 }
+
+ProfileContainer.propTypes = {
+    usersData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    loading: PropTypes.bool.isRequired
+};
 
 function mapStateToProps(state) {
     return {

@@ -15,11 +15,6 @@ import muiTheme from './config/theme';
 import store from './redux/store';
 
 import Layout from './components/Layout';
-import Login from './containers/Login';
-import Items from './containers/Items/';
-import NotFound from './containers/NotFound/';
-import Profile from './containers/Profile/';
-import Share from './containers/Share/';
 import Routes from './routes/Routes';
 
 injectTapEventPlugin();

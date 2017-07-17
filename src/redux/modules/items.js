@@ -1,4 +1,5 @@
 const LOAD_ITEMS = 'LOAD_ITEMS';
+const ITEM_TAGS = 'ITEM_TAGS';
 
 export function loadItems(itemsWithOwners) {
     return {
@@ -31,9 +32,34 @@ export function fetchItems(userId) {
     };
 }
 
+export function itemCategories(itemTags) {
+    return {
+        type: ITEM_TAGS,
+        payload: itemTags
+    };
+}
+
+export function fetchCategories() {
+    return function(dispatch) {
+        fetch('http://localhost:3001/items')
+        .then(response => response.json())
+        .then(json => {
+            const itemTags = json.reduce(function(prev, curr) {
+                return [...prev, ...curr.tags];
+            });
+            dispatch(itemCategories(itemTags));
+        });
+    };
+}
+
+// var allbooks = friends.reduce(function(prev, curr) {
+//   return [...prev, ...curr.books];
+// }, ['Alphabet'])
+
 const initialState = {
     loading: true,
-    itemsData: []
+    itemsData: [],
+    itemTags: []
 };
 
 export function itemsReducer(state = initialState, action) {
@@ -44,6 +70,12 @@ export function itemsReducer(state = initialState, action) {
             loading: false,
             itemsData: action.payload
         };
+
+    case ITEM_TAGS:
+        return {
+            itemTags: action.payload
+        };
+
     default:
         return state;
     }

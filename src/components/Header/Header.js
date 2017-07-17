@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import icon from '../../images/boomtown-logo.svg';
 
-import SelectArea from '../SelectField/';
+import SelectFieldContainer from '../../containers/SelectField/';
 import './style.css';
 
 const Header = () => (
@@ -16,7 +16,7 @@ const Header = () => (
                 <Link to={'/'} >
                     <img src={icon} alt="boomtown logo" className="logo" />
                 </Link>
-                <SelectArea />
+                <SelectFieldContainer />
             </div>
         }
         iconElementRight={

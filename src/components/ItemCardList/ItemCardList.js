@@ -20,8 +20,7 @@ const ItemCardList = ({ itemsData }) => (
 );
 
 ItemCardList.propTypes = {
-    itemsData: PropTypes.shape({
-    }).isRequired
+    itemsData: PropTypes.array.isRequired
 };
 
 export default ItemCardList;

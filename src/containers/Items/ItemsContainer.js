@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Loader from '../../components/Loader/';
 import Items from './Items';
@@ -20,6 +21,11 @@ class ItemsContainer extends Component {
         );
     }
 }
+
+ItemsContainer.propTypes = {
+    itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    loading: PropTypes.bool.isRequired
+};
 
 function mapStateToProps(state) {
     return {

@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 const selectField = ({ itemTags }) => (
     <div>
         <SelectField
-            multiple={true}
+            multiple
             hintText="Filter by tag"
             value={this.itemTags}
             onChange={this.handleChange}

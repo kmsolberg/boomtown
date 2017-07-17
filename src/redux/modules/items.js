@@ -40,11 +40,11 @@ export function itemCategories(itemTags) {
 }
 
 export function fetchCategories() {
-    return function(dispatch) {
+    return function (dispatch) {
         fetch('http://localhost:3001/items')
         .then(response => response.json())
         .then(json => {
-            const itemTags = json.reduce(function(prev, curr) {
+            const itemTags = json.reduce(function (prev, curr) {
                 return [...prev, ...curr.tags];
             });
             dispatch(itemCategories(itemTags));

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'material-ui/Card';
 import Gravatar from 'react-gravatar';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -29,5 +30,9 @@ const ProfileCard = ({ usersData }) => (
         </Card>
     </div>
 );
+
+ProfileCard.propTypes = {
+    usersData: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default ProfileCard;

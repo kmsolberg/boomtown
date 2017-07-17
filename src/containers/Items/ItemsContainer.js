@@ -24,7 +24,8 @@ class ItemsContainer extends Component {
 
 ItemsContainer.propTypes = {
     itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {

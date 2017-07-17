@@ -11,7 +11,7 @@ class SelectFieldContainer extends Component {
     }
 
     handleChange(event) {
-        console.log(event.target.value);
+        console.log(this.event.target.value);
     }
 
     render() {

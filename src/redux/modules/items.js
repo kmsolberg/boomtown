@@ -1,5 +1,5 @@
 const LOAD_ITEMS = 'LOAD_ITEMS';
-const ITEM_TAGS = 'ITEM_TAGS';
+const FILTER_ITEMS = 'FILTER_ITEMS';
 
 export function loadItems(itemsWithOwners) {
     return {
@@ -32,34 +32,17 @@ export function fetchItems(userId) {
     };
 }
 
-export function itemCategories(itemTags) {
+export function filterItems(filterTags) {
     return {
-        type: ITEM_TAGS,
-        payload: itemTags
+        type: FILTER_ITEMS,
+        payload: filterTags
     };
 }
-
-export function fetchCategories() {
-    return function (dispatch) {
-        fetch('http://localhost:3001/items')
-        .then(response => response.json())
-        .then(json => {
-            const itemTags = json.reduce(function (prev, curr) {
-                return [...prev, ...curr.tags];
-            });
-            dispatch(itemCategories(itemTags));
-        });
-    };
-}
-
-// var allbooks = friends.reduce(function(prev, curr) {
-//   return [...prev, ...curr.books];
-// }, ['Alphabet'])
 
 const initialState = {
     loading: true,
     itemsData: [],
-    itemTags: []
+    filterTags: []
 };
 
 export function itemsReducer(state = initialState, action) {
@@ -71,9 +54,9 @@ export function itemsReducer(state = initialState, action) {
             itemsData: action.payload
         };
 
-    case ITEM_TAGS:
+    case FILTER_ITEMS:
         return {
-            itemTags: action.payload
+            filterTags: action.payload
         };
 
     default:

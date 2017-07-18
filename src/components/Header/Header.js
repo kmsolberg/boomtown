@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import icon from '../../images/boomtown-logo.svg';
 
-import SelectFieldContainer from '../../containers/SelectField/';
+import { filterItems } from '../../redux/modules/items';
+import SelectField from '../SelectField/';
 import './style.css';
 
-const Header = () => (
+const Header = ({ dispatch, filterTags }) => (
     <AppBar
         style={{ 'background-color': 'white' }}
         iconElementLeft={
@@ -16,7 +18,11 @@ const Header = () => (
                 <Link to={'/'} >
                     <img src={icon} alt="boomtown logo" className="logo" />
                 </Link>
-                <SelectFieldContainer />
+                <SelectField
+                    dispatch={dispatch}
+                    onChangeAction={filterItems}
+                    filterTags={filterTags}
+                />
             </div>
         }
         iconElementRight={
@@ -36,4 +42,10 @@ const Header = () => (
     />
 );
 
-export default Header;
+function mapStateToProps(state) {
+    return {
+        filterTags: state.items.filterTags
+    };
+}
+
+export default connect(mapStateToProps)(Header);

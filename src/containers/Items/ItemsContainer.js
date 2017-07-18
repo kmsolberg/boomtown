@@ -12,11 +12,24 @@ class ItemsContainer extends Component {
         this.props.dispatch(fetchItems());
     }
 
+    filterItems(filterTags) {
+        const items = this.props.itemsData;
+
+        if (filterTags.length) {
+            return items.filter(item => item.tags.find(tag => filterTags.includes(tag)));
+        }
+        return items;
+    }
+
     render() {
+        const { filterTags } = this.props;
+        const filterItemsData = this.filterItems(filterTags);
+
         if (this.props.loading) return <Loader />;
+
         return (
             <Items
-                itemsData={this.props.itemsData}
+                itemsData={filterItemsData}
             />
         );
     }
@@ -25,13 +38,15 @@ class ItemsContainer extends Component {
 ItemsContainer.propTypes = {
     itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
     loading: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    filterTags: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 function mapStateToProps(state) {
     return {
         loading: state.items.loading,
-        itemsData: state.items.itemsData
+        itemsData: state.items.itemsData,
+        filterTags: state.items.filterTags
     };
 }
 

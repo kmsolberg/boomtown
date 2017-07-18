@@ -50,12 +50,14 @@ export function itemsReducer(state = initialState, action) {
 
     case LOAD_ITEMS:
         return {
+            ...state,
             loading: false,
             itemsData: action.payload
         };
 
     case FILTER_ITEMS:
         return {
+            ...state,
             filterTags: action.payload
         };
 

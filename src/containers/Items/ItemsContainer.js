@@ -12,8 +12,9 @@ class ItemsContainer extends Component {
         this.props.dispatch(fetchItems());
     }
 
-    filterItems(filterTags) {
+    updateFilterItems() {
         const items = this.props.itemsData;
+        const filterTags = this.props.filterTags;
 
         if (filterTags.length) {
             return items.filter(item => item.tags.find(tag => filterTags.includes(tag)));
@@ -23,7 +24,7 @@ class ItemsContainer extends Component {
 
     render() {
         const { filterTags } = this.props;
-        const filterItemsData = this.filterItems(filterTags);
+        const filterItemsData = this.updateFilterItems(filterTags);
 
         if (this.props.loading) return <Loader />;
 

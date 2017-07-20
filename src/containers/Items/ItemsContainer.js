@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Loader from '../../components/Loader/';
 import Items from './Items';
@@ -8,12 +10,8 @@ import { fetchItems } from '../../redux/modules/items';
 
 class ItemsContainer extends Component {
 
-    componentDidMount() {
-        this.props.dispatch(fetchItems());
-    }
-
     updateFilterItems() {
-        const items = this.props.itemsData;
+        const items = this.props.data.items;
         const filterTags = this.props.filterTags;
 
         if (filterTags.length) {
@@ -26,8 +24,6 @@ class ItemsContainer extends Component {
         const { filterTags } = this.props;
         const filterItemsData = this.updateFilterItems(filterTags);
 
-        if (this.props.loading) return <Loader />;
-
         return (
             <Items
                 itemsData={filterItemsData}
@@ -37,18 +33,31 @@ class ItemsContainer extends Component {
 }
 
 ItemsContainer.propTypes = {
-    itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
-    loading: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired,
     filterTags: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        loading: state.items.loading,
-        itemsData: state.items.itemsData,
+        // loading: state.items.loading,
         filterTags: state.items.filterTags
     };
 }
 
-export default connect(mapStateToProps)(ItemsContainer);
+const getItems = gql`
+    query fetchItems {
+        items {
+            imageUrl
+            itemOwner{
+                fullName
+                email
+            }
+            createdOn
+            title
+            tags
+            description
+        }
+    }
+`;
+
+const ItemsWithData = graphql(getItems)(ItemsContainer);
+export default connect(mapStateToProps)(ItemsWithData);

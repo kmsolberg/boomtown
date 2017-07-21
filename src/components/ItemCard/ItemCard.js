@@ -14,9 +14,17 @@ const ItemCard = ({ itemData }) => (
 
     <li className="itemCardWrapper">
         <Card>
-            <CardMedia>
-                <img src={itemData.imageUrl} alt="" />
-            </CardMedia>
+            {!itemData.available ? (
+                <CardMedia
+                    overlay={<CardTitle subtitle="Unavailable" />}
+                >
+                    <img src={itemData.imageUrl} alt={itemData.title} />
+                </CardMedia>
+            ) : (
+                <CardMedia>
+                    <img src={itemData.imageUrl} alt={itemData.title} />
+                </CardMedia>
+            )}
             <Link to={`/profile/${itemData.itemOwner.id}`}>
                 <CardHeader
                     title={itemData.itemOwner.fullName}
@@ -34,12 +42,14 @@ const ItemCard = ({ itemData }) => (
             </CardText>
             itemData.available.length &&
             <div className="borrow-button">
-                <FlatButton
-                    label="BORROW"
-                    backgroundColor="rgb(38, 50, 56)"
-                    hoverColor="grey"
-                    className="borrow-btn"
-                />
+                {itemData.available &&
+                    <FlatButton
+                        label="BORROW"
+                        backgroundColor="rgb(38, 50, 56)"
+                        hoverColor="grey"
+                        className="borrow-btn"
+                    />
+                }
             </div>
         </Card>
     </li>

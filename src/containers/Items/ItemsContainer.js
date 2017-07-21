@@ -61,6 +61,10 @@ const getItems = gql`
             title
             tags
             description
+            available
+            borrower {
+                fullName
+            }
         }
     }
 `;

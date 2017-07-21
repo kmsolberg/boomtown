@@ -13,11 +13,25 @@
 .profile-wrapper {
     display: flex;
     justify-content: space-around;
-    height: 15rem;
+    height: auto;
     margin: 0 2rem;
-    padding-top: 2rem;
+    padding: 2rem 0;
+    align-items: center;
 }
 
 .profile-gravatar {
     border-radius: 100px;
+}
+
+.borrowing-info li {
+    list-style: none;
+    color: rgba(38, 50, 56, 0.54);    
+}
+
+.borrowing-info {
+    margin-top: 1rem;
+}
+
+#black {
+    color: black;
 }

@@ -11,14 +11,23 @@ const ProfileCard = ({ usersData }) => (
             className="profile-card"
         >
             <div className="profile-wrapper">
-                <div className="profile-name">
-                    <h2>{usersData.fullName}</h2>
-                    <p>{usersData.bio}</p>
+                <div className="profile-info">
+                    <div className="profile-name">
+                        <h2>{usersData.fullName}</h2>
+                        <p>{usersData.bio}</p>
+                    </div>
+                    <div className="borrowing-info">
+                        <h3>Currently Borrowing:</h3>
+                        {usersData.borrowed.map((item) => (
+                            <li key={item.id}>{item.title} from {item.itemOwner.fullName}</li>
+                        )
+                        )}
+                    </div>
                 </div>
                 <div>
-                    <p>{usersData.items.length}</p>
+                    <p id="black">{usersData.items.length}</p>
                     <p>Items Shared</p>
-                    <p>{usersData.borrowed.length}</p>
+                    <p id="black">{usersData.borrowed.length}</p>
                     <p>Items Borrowed</p>
                 </div>
                 <Gravatar

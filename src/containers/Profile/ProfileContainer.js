@@ -61,10 +61,13 @@ const profilePage = gql`
                 description
             }
             borrowed {
+                title
                 id
+                itemOwner {
+                    fullName
+                }
             }
         }
-        
     }
 `;
 

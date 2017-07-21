@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 
 const moment = require('moment');
+
 moment().format();
 
 const ItemCard = ({ itemData }) => (
@@ -16,7 +17,7 @@ const ItemCard = ({ itemData }) => (
             <CardMedia>
                 <img src={itemData.imageUrl} alt="" />
             </CardMedia>
-            <Link to={'/profile/'+itemData.itemOwner.id}>
+            <Link to={`/profile/${itemData.itemOwner.id}`}>
                 <CardHeader
                     title={itemData.itemOwner.fullName}
                     subtitle={(moment.unix(itemData.createdOn)).fromNow()}

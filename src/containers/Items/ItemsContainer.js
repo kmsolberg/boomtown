@@ -6,7 +6,6 @@ import gql from 'graphql-tag';
 
 import Loader from '../../components/Loader/';
 import Items from './Items';
-import { fetchItems } from '../../redux/modules/items';
 
 class ItemsContainer extends Component {
 
@@ -24,6 +23,8 @@ class ItemsContainer extends Component {
         const { filterTags } = this.props;
         const filterItemsData = this.updateFilterItems(filterTags);
 
+        if (this.props.data.loading) return <Loader />;
+
         return (
             <Items
                 itemsData={filterItemsData}
@@ -33,12 +34,15 @@ class ItemsContainer extends Component {
 }
 
 ItemsContainer.propTypes = {
-    filterTags: PropTypes.arrayOf(PropTypes.string).isRequired
+    filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    data: PropTypes.shape({
+        loading: PropTypes.bool.isRequired,
+        items: PropTypes.object
+    }).isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        // loading: state.items.loading,
         filterTags: state.items.filterTags
     };
 }
@@ -46,10 +50,12 @@ function mapStateToProps(state) {
 const getItems = gql`
     query fetchItems {
         items {
+            id
             imageUrl
             itemOwner{
                 fullName
                 email
+                id
             }
             createdOn
             title

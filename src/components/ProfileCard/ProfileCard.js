@@ -16,9 +16,9 @@ const ProfileCard = ({ usersData }) => (
                     <p>{usersData.bio}</p>
                 </div>
                 <div>
-                    <p>10</p>
+                    <p>{usersData.items.length}</p>
                     <p>Items Shared</p>
-                    <p>20</p>
+                    <p>{usersData.borrowed.length}</p>
                     <p>Items Borrowed</p>
                 </div>
                 <Gravatar

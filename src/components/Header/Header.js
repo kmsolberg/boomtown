@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -47,5 +48,10 @@ function mapStateToProps(state) {
         filterTags: state.items.filterTags
     };
 }
+
+Header.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default connect(mapStateToProps)(Header);

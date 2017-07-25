@@ -3,6 +3,7 @@ import { Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Ca
 import FlatButton from 'material-ui/FlatButton';
 import Gravatar from 'react-gravatar';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './style.css';
 
@@ -16,7 +17,7 @@ const ItemCard = ({ itemData }) => (
         <Card>
             {!itemData.available ? (
                 <CardMedia
-                    overlay={<CardTitle subtitle="Unavailable" />}
+                    overlay={<CardTitle subtitle="UNAVAILABLE" />}
                 >
                     <img src={itemData.imageUrl} alt={itemData.title} />
                 </CardMedia>
@@ -54,5 +55,11 @@ const ItemCard = ({ itemData }) => (
         </Card>
     </li>
 );
+
+ItemCard.propTypes = {
+    itemData: PropTypes.shape({
+        items: PropTypes.object
+    }).isRequired
+};
 
 export default ItemCard;

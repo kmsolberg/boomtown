@@ -274,6 +274,19 @@
       "createdOn": 1497044400,
       "available": true,
       "borrower": null
+    },
+    {
+      "title": "A Wrinkle in Time",
+      "imageUrl": "http://images.gr-assets.com/books/1329061522l/18131.jpg",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
+      "description": "Travel to a far off land with Mrs Whatsit",
+      "tags": [
+        "Household Items"
+      ],
+      "createdOn": 1500938836,
+      "available": true,
+      "borrower": null,
+      "id": 23
     }
   ],
   "users": [

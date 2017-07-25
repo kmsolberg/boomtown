@@ -5,3 +5,7 @@
 .borrow-button {
     padding: 6px;
 }
+
+.gravatar-img {
+    border-radius: 50px;
+}

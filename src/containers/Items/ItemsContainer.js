@@ -37,7 +37,7 @@ ItemsContainer.propTypes = {
     filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
     data: PropTypes.shape({
         loading: PropTypes.bool.isRequired,
-        items: PropTypes.object
+        items: PropTypes.arrayOf(PropTypes.object)
     }).isRequired
 };
 

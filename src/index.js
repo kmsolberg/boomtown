@@ -13,9 +13,19 @@ import './index.css';
 import muiTheme from './config/theme';
 import store from './redux/store';
 import client from './config/apolloClient';
+import { FirebaseAuth } from './config/firebase';
+import { updateUserProfile } from './redux/modules/authentication';
 
 import Layout from './components/Layout';
 import Routes from './routes/Routes';
+
+FirebaseAuth.onAuthStateChanged(function(user) {
+    if (user) {
+        store.dispatch(updateUserProfile(user.uid));
+    } else {
+        store.dispatch(updateUserProfile(false));
+    }
+});
 
 injectTapEventPlugin();
 

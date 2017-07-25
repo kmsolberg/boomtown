@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -24,6 +25,12 @@ const selectField = ({ filterTags, dispatch, onChangeAction }) => {
             ))}
         </SelectField>
     );
+};
+
+selectField.propTypes = {
+    filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    dispatch: PropTypes.func.isRequired,
+    onChangeAction: PropTypes.func.isRequired
 };
 
 export default selectField;

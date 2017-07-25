@@ -31,12 +31,10 @@ class LoginContainer extends Component {
     };
 
     login = ({ email, password }) => {
-        email = 'kat@email.com';
-        password = 'password';
-
         // callback for authenticating user
         FirebaseAuth.signInWithEmailAndPassword(email, password)
         // if error & incorrect user, catch these errors
+        // TODO move into a thunk, then import action creator
         .catch((err) => {
             if (err.code === 'auth/user-not-found') {
                 console.log('User not found');
@@ -50,9 +48,12 @@ class LoginContainer extends Component {
         });
     }
 
-    render() {
-        this.login({ email: 'kat@email.com', password: 'password' });
+    // join = () => {
+        // TODO write the sign-up form
+        // capture email, first name, last name, bio, password
+    // }
 
+    render() {
         if (this.props.authenticated) {
             return (
                 <Redirect to="/" />
@@ -60,11 +61,17 @@ class LoginContainer extends Component {
         }
 
         return (
-            // TODO use rerouter from authentication to go to items
-            <Login login={this.login} />
+            <Login login={(e) => {
+                e.preventDefault();
+                this.login({ email: 'kat@email.com', password: 'password' });
+            }}
+            />
         );
     }
 }
+
+// PropTypes
+// TODO authenticated
 
 const mapStateToProps = state => ({
     authenticated: state.auth.userLogin

@@ -13,13 +13,13 @@ const ProfileCard = ({ usersData }) => (
             <div className="profile-wrapper">
                 <div className="profile-info">
                     <div className="profile-name">
-                        <h2>{usersData.fullName}</h2>
+                        <h2>{usersData.fullname}</h2>
                         <p>{usersData.bio}</p>
                     </div>
                     <div className="borrowing-info">
                         <h3>Currently Borrowing:</h3>
                         {usersData.borrowed.map((item) => (
-                            <li key={item.id}>{item.title} from {item.itemOwner.fullName}</li>
+                            <li key={item.id}>{item.title} from {item.itemOwner.fullname}</li>
                         )
                         )}
                     </div>

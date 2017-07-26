@@ -28,7 +28,7 @@ const ItemCard = ({ itemData }) => (
             )}
             <Link to={`/profile/${itemData.itemOwner.id}`}>
                 <CardHeader
-                    title={itemData.itemOwner.fullName}
+                    title={itemData.itemOwner.fullname}
                     subtitle={(moment.unix(itemData.createdOn)).fromNow()}
                     avatar={<Gravatar email={itemData.itemOwner.email} className="gravatar-img" />}
                 />

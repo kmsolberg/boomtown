@@ -6,6 +6,7 @@ import Login from '../containers/Login';
 import Share from '../containers/Share';
 import Profile from '../containers/Profile';
 import NotFound from '../containers/NotFound';
+import SignUp from '../containers/SignUp/';
 
 
 // import all the components you're rendering in the routes
@@ -17,6 +18,7 @@ const Routes = () => (
         <Route path="/login" component={Login} />
         <Route path="/share" component={Share} />
         <Route path="/profile/:id" component={Profile} />
+        <Route path="/signup" component={SignUp} />
         <Route component={NotFound} />
     </Switch>
 );

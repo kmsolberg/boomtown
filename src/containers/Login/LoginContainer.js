@@ -61,11 +61,13 @@ class LoginContainer extends Component {
         }
 
         return (
-            <Login login={(e) => {
-                e.preventDefault();
-                this.login({ email: 'kat@email.com', password: 'password' });
-            }}
-            />
+            <div>
+                <Login login={(e) => {
+                    e.preventDefault();
+                    this.login({ email: 'kat@email.com', password: 'password' });
+                }}
+                />
+            </div>
         );
     }
 }

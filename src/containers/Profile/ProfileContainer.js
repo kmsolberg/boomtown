@@ -43,7 +43,7 @@ function mapStateToProps(state) {
 const profilePage = gql`
     query fetchProfile($id: ID!) {
         user(id: $id) {
-            fullName
+            fullname
             bio
             id
             email
@@ -51,7 +51,7 @@ const profilePage = gql`
                 id
                 imageUrl
                 itemOwner{
-                    fullName
+                    fullname
                     email
                     id
                 }
@@ -64,7 +64,7 @@ const profilePage = gql`
                 title
                 id
                 itemOwner {
-                    fullName
+                    fullname
                 }
             }
         }

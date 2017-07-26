@@ -53,7 +53,7 @@ const getItems = gql`
             id
             imageUrl
             itemOwner{
-                fullName
+                fullname
                 email
                 id
             }
@@ -63,7 +63,7 @@ const getItems = gql`
             description
             available
             borrower {
-                fullName
+                fullname
             }
         }
     }

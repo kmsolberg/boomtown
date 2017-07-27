@@ -50,8 +50,8 @@ function mapStateToProps(state) {
 const getItems = gql`
     query fetchItems {
         items {
-            id
-            imageUrl
+            itemid
+            imageurl
             itemOwner{
                 fullname
                 email

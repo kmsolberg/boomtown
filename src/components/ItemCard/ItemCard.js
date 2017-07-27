@@ -19,11 +19,11 @@ const ItemCard = ({ itemData }) => (
                 <CardMedia
                     overlay={<CardTitle subtitle="UNAVAILABLE" />}
                 >
-                    <img src={itemData.imageUrl} alt={itemData.title} />
+                    <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>
             ) : (
                 <CardMedia>
-                    <img src={itemData.imageUrl} alt={itemData.title} />
+                    <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>
             )}
             <Link to={`/profile/${itemData.itemOwner.id}`}>

@@ -42,33 +42,29 @@ function mapStateToProps(state) {
 
 const profilePage = gql`
     query fetchProfile($id: ID!) {
-        user(id: $id) {
-            fullname
-            bio
-            id
-            email
-            items {
-                id
-                imageUrl
-                itemOwner{
-                    fullname
-                    email
-                    id
-                }
-                createdOn
-                title
-                tags
-                description
-            }
-            borrowed {
-                title
-                id
-                itemOwner {
-                    fullname
-                }
-            }
-        }
+    user(id: $id) {
+      fullname
+      bio
+      id
+      email
+      items {
+        itemid
+        imageurl
+        itemOwner{
+          fullname
+          email
+          id
+          }
+        createdOn
+        title
+        tags
+        description
+      }
+    borrowed {
+      title
     }
+    }
+  }
 `;
 
 const UsersWithData = graphql(profilePage, {

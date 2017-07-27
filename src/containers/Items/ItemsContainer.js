@@ -50,7 +50,7 @@ function mapStateToProps(state) {
 const getItems = gql`
     query fetchItems {
         items {
-            itemid
+            id
             imageurl
             itemOwner{
                 fullname
@@ -59,7 +59,9 @@ const getItems = gql`
             }
             createdOn
             title
-            tags
+            tags {
+                title
+            }
             description
             available
             borrower {

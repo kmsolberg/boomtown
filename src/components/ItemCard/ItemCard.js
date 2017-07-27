@@ -36,7 +36,7 @@ const ItemCard = ({ itemData }) => (
 
             <CardTitle
                 title={itemData.title}
-                subtitle={itemData.tags}
+                subtitle={(itemData.tags.map(tag => tag.title).join(', '))}
             />
             <CardText>
                 {itemData.description}

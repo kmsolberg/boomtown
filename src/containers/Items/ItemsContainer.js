@@ -52,12 +52,12 @@ const getItems = gql`
         items {
             id
             imageurl
-            itemOwner{
+            itemowner{
                 fullname
                 email
                 id
             }
-            createdOn
+            createdon
             title
             tags {
                 title

@@ -26,11 +26,11 @@ const ItemCard = ({ itemData }) => (
                     <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>
             )}
-            <Link to={`/profile/${itemData.itemOwner.id}`}>
+            <Link to={`/profile/${itemData.itemowner.id}`}>
                 <CardHeader
-                    title={itemData.itemOwner.fullname}
-                    subtitle={(moment.unix(itemData.createdOn)).fromNow()}
-                    avatar={<Gravatar email={itemData.itemOwner.email} className="gravatar-img" />}
+                    title={itemData.itemowner.fullname}
+                    subtitle={(moment(itemData.createdon, 'YYYYMMDD')).fromNow()}
+                    avatar={<Gravatar email={itemData.itemowner.email} className="gravatar-img" />}
                 />
             </Link>
 

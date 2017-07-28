@@ -54,12 +54,12 @@ class LoginContainer extends Component {
     // }
 
     render() {
-        // const { from } = this.props.location.state || { from: { pathname: '/' } };
+        const { from } = this.props.location.state || { from: { pathname: '/' } };
         const { authenticated, loginFormValues, ...props } = this.props;
 
         if (authenticated) {
             return (
-                <Redirect to="/" />
+                <Redirect to={from} />
             );
         }
 

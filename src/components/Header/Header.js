@@ -12,7 +12,7 @@ import SelectField from '../SelectField/';
 import './style.css';
 import { FirebaseAuth } from '../../config/firebase';
 
-const Header = ({ dispatch, filterTags }) => (
+const Header = ({ dispatch, filterTags, authenticated }) => (
     <AppBar
         style={{ 'background-color': 'white' }}
         iconElementLeft={
@@ -33,10 +33,12 @@ const Header = ({ dispatch, filterTags }) => (
                     label="My Profile"
                     backgroundColor="rgb(129, 212, 250)"
                     labelColor="white"
+                    containerElement={<Link to={`/profile/${authenticated}`} />}
+                    linkButton
                 />
                 <RaisedButton
                     label="Logout"
-                    onTouchTap={() => FirebaseAuth.signout}
+                    onTouchTap={() => FirebaseAuth.signOut()}
                     backgroundColor="rgb(38, 50, 56)"
                     labelColor="white"
                 />
@@ -47,7 +49,8 @@ const Header = ({ dispatch, filterTags }) => (
 
 function mapStateToProps(state) {
     return {
-        filterTags: state.items.filterTags
+        filterTags: state.items.filterTags,
+        authenticated: state.auth.userLogin
     };
 }
 

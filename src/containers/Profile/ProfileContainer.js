@@ -7,7 +7,6 @@ import gql from 'graphql-tag';
 import Profile from './Profile';
 import Loader from '../../components/Loader/';
 import ItemCardList from '../../components/ItemCardList/';
-// import { fetchItems } from '../../redux/modules/items';
 
 class ProfileContainer extends Component {
 
@@ -48,16 +47,18 @@ const profilePage = gql`
       id
       email
       items {
-        itemid
+        id
         imageurl
-        itemOwner{
+        itemowner{
           fullname
           email
           id
           }
-        createdOn
+        createdon
         title
-        tags
+        tags {
+            title
+        }
         description
       }
     borrowed {

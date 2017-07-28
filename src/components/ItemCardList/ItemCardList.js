@@ -14,7 +14,7 @@ const ItemCardList = ({ itemsData }) => (
         elementType={'ul'}
     >
         { itemsData && itemsData.map((item) => (
-            <ItemCard itemData={item} key={item.itemid} />
+            <ItemCard itemData={item} key={item.id} />
         )) }
     </Masonry>
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import PrivateRoute from '../components/PrivateRoute/';
 import Items from '../containers/Items';
 import Login from '../containers/Login';
 import Share from '../containers/Share';
@@ -14,11 +15,11 @@ import SignUp from '../containers/SignUp/';
 
 const Routes = () => (
     <Switch>
-        <Route exact path="/" component={Items} />
         <Route path="/login" component={Login} />
-        <Route path="/share" component={Share} />
-        <Route path="/profile/:id" component={Profile} />
-        <Route path="/signup" component={SignUp} />
+        <PrivateRoute exact path="/" component={Items} />
+        <PrivateRoute path="/share" component={Share} />
+        <PrivateRoute path="/profile/:id" component={Profile} />
+        <PrivateRoute path="/signup" component={SignUp} />
         <Route component={NotFound} />
     </Switch>
 );

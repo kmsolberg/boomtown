@@ -5,7 +5,7 @@ import { FirebaseAuth, FirebaseDB } from '../../config/firebase';
 
 import Login from './Login';
 
-    // TODO
+// TODO
 
 
 //         FirebaseDB.ref(`/users/${userID}`)
@@ -33,28 +33,31 @@ class LoginContainer extends Component {
     login = ({ email, password }) => {
         // callback for authenticating user
         FirebaseAuth.signInWithEmailAndPassword(email, password)
-        // if error & incorrect user, catch these errors
-        // TODO move into a thunk, then import action creator
-        .catch((err) => {
-            if (err.code === 'auth/user-not-found') {
-                console.log('User not found');
-                // this.props.dispatch(showJoinModal(true));
-                // TODO write action
-            } else {
-                console.log('Well done!');
-                // this.props.dispatch(showLoginError(true));
-                // TODO write action
-            }
-        });
+            // if error & incorrect user, catch these errors
+            // TODO move into a thunk, then import action creator
+            .catch((err) => {
+                if (err.code === 'auth/user-not-found') {
+                    console.log('User not found');
+                    // this.props.dispatch(showJoinModal(true));
+                    // TODO write action
+                } else {
+                    console.log('Well done!');
+                    // this.props.dispatch(showLoginError(true));
+                    // TODO write action
+                }
+            });
     }
 
     // join = () => {
-        // TODO write the sign-up form
-        // capture email, first name, last name, bio, password
+    // TODO write the sign-up form
+    // capture email, first name, last name, bio, password
     // }
 
     render() {
-        if (this.props.authenticated) {
+        // const { from } = this.props.location.state || { from: { pathname: '/' } };
+        const { authenticated, loginFormValues, ...props } = this.props;
+
+        if (authenticated) {
             return (
                 <Redirect to="/" />
             );
@@ -62,10 +65,12 @@ class LoginContainer extends Component {
 
         return (
             <div>
-                <Login login={(e) => {
-                    e.preventDefault();
-                    this.login({ email: 'kat@email.com', password: 'password' });
-                }}
+                <Login
+                    {...props}
+                    login={(e) => {
+                        e.preventDefault();
+                        this.login({ email: 'kat@email.com', password: 'password' });
+                    }}
                 />
             </div>
         );

@@ -10,6 +10,7 @@ import icon from '../../images/boomtown-logo.svg';
 import { filterItems } from '../../redux/modules/items';
 import SelectField from '../SelectField/';
 import './style.css';
+import { FirebaseAuth } from '../../config/firebase';
 
 const Header = ({ dispatch, filterTags }) => (
     <AppBar
@@ -35,6 +36,7 @@ const Header = ({ dispatch, filterTags }) => (
                 />
                 <RaisedButton
                     label="Logout"
+                    onTouchTap={() => FirebaseAuth.signout}
                     backgroundColor="rgb(38, 50, 56)"
                     labelColor="white"
                 />

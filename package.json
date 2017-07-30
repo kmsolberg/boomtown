@@ -22,6 +22,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
+    "redux-form": "^7.0.3",
     "redux-logger": "^3.0.6",
     "redux-middleware": "^0.1.21",
     "redux-thunk": "^2.2.0"

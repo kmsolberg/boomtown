@@ -34,7 +34,6 @@ const Header = ({ dispatch, filterTags, authenticated }) => (
                     backgroundColor="rgb(129, 212, 250)"
                     labelColor="white"
                     containerElement={<Link to={`/profile/${authenticated}`} />}
-                    linkButton
                 />
                 <RaisedButton
                     label="Logout"

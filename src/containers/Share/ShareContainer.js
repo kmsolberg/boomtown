@@ -54,7 +54,9 @@ class ShareContainer extends Component {
                 itemowner: `${this.props.authenticated}`,
                 description: `${this.props.values.values.description}`,
                 imageurl: `${this.props.imageurl}`,
-                tags: `${this.props.values.values.tags.map((tagid) => `id: ${tagid}`)}`
+                tags: this.props.values.values.tags.map((tag) => {
+                    return { id: tag };
+                })
             }
         })
         .then(({ data }) => {

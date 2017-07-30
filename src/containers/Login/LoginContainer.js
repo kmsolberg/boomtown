@@ -69,7 +69,7 @@ class LoginContainer extends Component {
                     {...props}
                     login={(e) => {
                         e.preventDefault();
-                        this.login({ email: 'kat@email.com', password: 'password' });
+                        this.login({ email: `${this.props.values.values.email}`, password: `${this.props.values.values.password}` });
                     }}
                 />
             </div>
@@ -81,7 +81,8 @@ class LoginContainer extends Component {
 // TODO authenticated
 
 const mapStateToProps = state => ({
-    authenticated: state.auth.userLogin
+    authenticated: state.auth.userLogin,
+    values: state.form.login
 });
 
 export default connect(mapStateToProps)(LoginContainer);

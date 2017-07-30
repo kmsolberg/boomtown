@@ -18,13 +18,16 @@ const styles = {
     }
 };
 
-const ValidatedTextField = ({ label }) => (
+const ValidatedTextField = ({ label, type, input, custom }) => (
     <TextField
         style={styles.fieldStyle}
         hintText={label}
         floatingLabelText={label}
         errorStyle={styles.errorStyle}
         underlineFocusStyle={styles.underlineStyle}
+        type={type}
+        {...input}
+        {...custom}
     />
 );
 

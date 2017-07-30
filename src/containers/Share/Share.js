@@ -72,7 +72,7 @@ let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, han
                 key={tag.id}
                 insetChildren={true}
                 checked={values && values.tags.includes(tag.id)}
-                value={[{ id: tag.id }]}
+                value={[tag.id]}
                 primaryText={tag.title}
             />
         ));

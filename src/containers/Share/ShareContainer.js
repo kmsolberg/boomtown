@@ -48,13 +48,13 @@ class ShareContainer extends Component {
     }
 
     handleSubmit = () => {
-        console.log(this.props.values.values.title);
         this.props.mutate({
             variables: {
                 title: `${this.props.values.values.title}`,
                 itemowner: `${this.props.authenticated}`,
                 description: `${this.props.values.values.description}`,
-                imageurl: `${this.props.imageurl}`
+                imageurl: `${this.props.imageurl}`,
+                tags: `${this.props.values.values.tags.map((tagid) => `id: ${tagid}`)}`
             }
         })
         .then(({ data }) => {
@@ -110,7 +110,7 @@ function mapStateToProps(state) {
         values: state.form.share,
         stepIndex: state.share.stepIndex,
         authenticated: state.auth.userLogin,
-        imageurl: state.share.imageUrl
+        imageurl: state.share.imageUrl,
     };
 }
 
@@ -120,12 +120,14 @@ const addItem = gql`
         $itemowner: ID!
         $description: String!
         $imageurl: String
+        $tags: [AssignedTag]
         ) {
             addItem(
             title: $title
             itemowner: $itemowner
             description: $description
             imageurl: $imageurl
+            tags: $tags
         ) {
             title
             description
@@ -133,6 +135,9 @@ const addItem = gql`
                 id
             }
             imageurl
+            tags {
+                id
+            }
         }
         }
 `;

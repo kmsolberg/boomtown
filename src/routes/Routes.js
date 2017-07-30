@@ -19,7 +19,7 @@ const Routes = () => (
         <PrivateRoute exact path="/" component={Items} />
         <PrivateRoute path="/share" component={Share} />
         <PrivateRoute path="/profile/:id" component={Profile} />
-        <PrivateRoute path="/signup" component={SignUp} />
+        <Route path="/signup" component={SignUp} />
         <Route component={NotFound} />
     </Switch>
 );

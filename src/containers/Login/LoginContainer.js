@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { FirebaseAuth, FirebaseDB } from '../../config/firebase';
 
 import Login from './Login';
+import { showSignUp } from '../../redux/modules/authentication';
 
 // TODO
 
@@ -37,8 +38,7 @@ class LoginContainer extends Component {
             // TODO move into a thunk, then import action creator
             .catch((err) => {
                 if (err.code === 'auth/user-not-found') {
-                    console.log('User not found');
-                    // this.props.dispatch(showJoinModal(true));
+                    this.props.dispatch(showSignUp(true));
                     // TODO write action
                 } else {
                     console.log('Well done!');
@@ -55,11 +55,17 @@ class LoginContainer extends Component {
 
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } };
-        const { authenticated, loginFormValues, ...props } = this.props;
+        const { authenticated, loginFormValues, signUp, ...props } = this.props;
 
         if (authenticated) {
             return (
                 <Redirect to={from} />
+            );
+        }
+
+        if (signUp) {
+            return (
+                <Redirect to="/signup" />
             );
         }
 
@@ -82,7 +88,8 @@ class LoginContainer extends Component {
 
 const mapStateToProps = state => ({
     authenticated: state.auth.userLogin,
-    values: state.form.login
+    values: state.form.login,
+    signUp: state.auth.userExist
 });
 
 export default connect(mapStateToProps)(LoginContainer);

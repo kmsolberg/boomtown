@@ -37,7 +37,17 @@ ItemsContainer.propTypes = {
     filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
     data: PropTypes.shape({
         loading: PropTypes.bool.isRequired,
-        items: PropTypes.arrayOf(PropTypes.object)
+        items: PropTypes.shape({
+            title: PropTypes.string,
+            available: PropTypes.bool,
+            imageurl: PropTypes.string,
+            itemowner: PropTypes.shape({
+                fullname: PropTypes.string,
+                email: PropTypes.string
+            }),
+            createdon: PropTypes.string,
+            tags: PropTypes.array
+        }).isRequired
     }).isRequired
 };
 

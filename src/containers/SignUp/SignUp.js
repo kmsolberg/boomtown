@@ -2,8 +2,11 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+
+import './style.css';
 
 const validate = values => {
     const errors = {};
@@ -32,11 +35,13 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 );
 
 let SignUp = ({ signUpUser }) => (
-    <div>
+    <div className="signup-form">
         <form onSubmit={signUpUser} >
             <Paper >
-                <h2>No Account With this Email.</h2>
-                <p>The email you provided is not registered. Would you like to use it to join and start sharing with everyone?</p>
+                <div className="signup-info">
+                    <h2>No Account With this Email.</h2>
+                    <p>The email you provided is not registered. Would you like to use it to join and start sharing with everyone?</p>
+                </div>
                 <Field
                     name="fullName"
                     label="Your Name"
@@ -57,19 +62,32 @@ let SignUp = ({ signUpUser }) => (
                     label="Your Password"
                     component={renderTextField}
                 /><br />
-                <RaisedButton
-                    label="NO THANKS!"
-                    type="submit"
-                    href="/login"
-                />
-                <RaisedButton
-                    label="JOIN!"
-                    type="submit"
-                />
+                <div className="signup-buttons">
+                    <RaisedButton
+                        label="NO THANKS!"
+                        type="submit"
+                        href="/login"
+                        backgroundColor="black"
+                        labelColor="rgb(129, 212, 250)"
+                    />
+                    <RaisedButton
+                        label="JOIN!"
+                        type="submit"
+                        backgroundColor="rgb(129, 212, 250)"
+                        labelColor="white"
+                    />
+                </div>
             </Paper>
         </form>
     </div>
 );
+
+SignUp.propTypes = {
+    input: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    signUpUser: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+    meta: PropTypes.string.isRequired
+};
 
 function mapStateToProps(state) {
     return {

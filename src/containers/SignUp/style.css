@@ -1,0 +1,30 @@
+.signup-form {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.signup-form form {
+    width: 70%;
+}
+
+p {
+    padding: 1rem;
+}
+
+.signup-info {
+    padding: 2rem 2rem 0 2rem;
+}
+
+.signup-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+    padding: 1rem 0;
+}

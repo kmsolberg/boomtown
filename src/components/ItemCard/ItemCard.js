@@ -58,7 +58,15 @@ const ItemCard = ({ itemData }) => (
 
 ItemCard.propTypes = {
     itemData: PropTypes.shape({
-        items: PropTypes.object
+        title: PropTypes.string,
+        available: PropTypes.bool,
+        imageurl: PropTypes.string,
+        itemowner: PropTypes.shape({
+            fullname: PropTypes.string,
+            email: PropTypes.string
+        }),
+        createdon: PropTypes.string,
+        tags: PropTypes.array
     }).isRequired
 };
 

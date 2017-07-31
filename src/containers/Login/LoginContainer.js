@@ -15,8 +15,6 @@ class LoginContainer extends Component {
     login = ({ email, password }) => {
         // callback for authenticating user
         FirebaseAuth.signInWithEmailAndPassword(email, password)
-            // if error & incorrect user, catch these errors
-            // TODO move into a thunk, then import action creator
             .catch((err) => {
                 if (err.code === 'auth/user-not-found') {
                     this.props.dispatch(showSignUp(true));

@@ -6,7 +6,6 @@ import { graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import { Redirect } from 'react-router-dom';
 
 import { FirebaseAuth, FirebaseStorage } from '../../config/firebase';
 import Share from './Share';
@@ -36,10 +35,6 @@ class ShareContainer extends Component {
         const userId = FirebaseAuth.currentUser.uid;
         const fileName = this.fileInput.files[0].name;
 
-        // this.props.dispatch(startImageUpload());
-        // updates the store with the new image
-        // TODO make action to uplaod image for the upload image bar
-
         cloud.child(`images/${userId}/${fileName}`)
             .put(this.fileInput.files[0])
             .then(result => {
@@ -49,7 +44,8 @@ class ShareContainer extends Component {
             });
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         this.props.mutate({
             variables: {
                 title: `${this.props.values.values.title}`,
@@ -63,10 +59,9 @@ class ShareContainer extends Component {
         })
         .then(({ data }) => {
             console.log('got data', data);
-        }).then()
-        .catch((error) => {
+        }).catch((error) => {
             console.log('there was an error sending the query', error);
-        });
+        }).dispatch(reset('share'));
     }
 
     renderStepActions = (step) => {

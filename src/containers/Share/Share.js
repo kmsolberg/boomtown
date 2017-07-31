@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, isPristine, isSubmitting } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 import {
     Step,
@@ -43,12 +43,11 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
     <SelectField
-        multiple={true}
+        multiple
         floatingLabelText={label}
         errorText={touched && error}
         {...input}
         onChange={(event, index, value) => input.onChange(value)}
-        children={children}
         {...custom}
     />
 );
@@ -64,13 +63,12 @@ const listOfTags = [
 ];
 
 
-let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, values, finished }) => {
-
+let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, values }) => {
     const renderMenuItems = (tags) => {
         return tags.map((tag) => (
             <MenuItem
                 key={tag.id}
-                insetChildren={true}
+                insetChildren
                 checked={values && values.values.tags.includes(tag.id)}
                 value={[tag.id]}
                 primaryText={tag.title}
@@ -150,10 +148,21 @@ let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, han
     );
 };
 
+Share.propTypes = {
+    input: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    label: PropTypes.string.isRequired,
+    meta: PropTypes.string.isRequired,
+    stepIndex: PropTypes.number.isRequired,
+    renderStepActions: PropTypes.func.isRequired,
+    handleImageUpload: PropTypes.func.isRequired,
+    selectImage: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    children: PropTypes.shape(PropTypes.object).isRequired,
+    values: PropTypes.arrayOf(PropTypes.object).isRequired
+};
+
 function mapStateToProps(state) {
     return {
-        submitting: state.form.isSubmitting,
-        pristine: state.form.isPristine,
         values: state.form.share,
     };
 }

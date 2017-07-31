@@ -41,7 +41,12 @@ const ProfileCard = ({ usersData }) => (
 );
 
 ProfileCard.propTypes = {
-    usersData: PropTypes.arrayOf(PropTypes.object).isRequired
+    usersData: PropTypes.shape({
+        fullname: PropTypes.string,
+        bio: PropTypes.string,
+        borrowed: PropTypes.arrayOf(PropTypes.object),
+        email: PropTypes.string
+    }).isRequired
 };
 
 export default ProfileCard;

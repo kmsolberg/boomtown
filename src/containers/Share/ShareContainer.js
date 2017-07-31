@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {reset} from 'redux-form';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
@@ -55,9 +56,9 @@ class ShareContainer extends Component {
                 itemowner: `${this.props.authenticated}`,
                 description: `${this.props.values.values.description}`,
                 imageurl: `${this.props.imageurl}`,
-                tags: this.props.values.values.tags.map((tag) => {
-                    return { id: tag };
-                })
+                tags: this.props.values.values.tags.map((tag) =>
+                    ({ id: tag })
+                )
             }
         })
         .then(({ data }) => {

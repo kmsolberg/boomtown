@@ -27,10 +27,12 @@ const mapStateToProps = state => ({
 });
 
 PrivateRoute.propTypes = {
-    authenticated: PropTypes.string.isRequired,
-    component: PropTypes.element.isRequired,
-    location: PropTypes.element.isRequired
+    authenticated: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool
+    ]).isRequired,
+    component: PropTypes.func.isRequired,
+    location: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
-// TODO PROPTYPES component, authenticated, location
 
 export default connect(mapStateToProps)(PrivateRoute);

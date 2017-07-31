@@ -55,10 +55,11 @@ function mapStateToProps(state) {
 
 Header.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    filterTags: PropTypes.shape({
-        tags: PropTypes.object
-    }).isRequired,
-    authenticated: PropTypes.string.isRequired
+    filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    authenticated: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool
+    ]).isRequired
 };
 
 export default connect(mapStateToProps)(Header);

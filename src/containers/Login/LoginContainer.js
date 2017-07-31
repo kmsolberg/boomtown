@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { FirebaseAuth, FirebaseDB } from '../../config/firebase';
+import { FirebaseAuth } from '../../config/firebase';
 
 import Login from './Login';
 import { showSignUp, loginError } from '../../redux/modules/authentication';
-
-// TODO
-
-
-//         FirebaseDB.ref(`/users/${userID}`)
-//         .once('value')
-//     // User is signed in.
-//     var displayName = user.displayName;
-//     var email = user.email;
-//     var emailVerified = user.emailVerified;
-//     var photoURL = user.photoURL;
-//     var isAnonymous = user.isAnonymous;
-//     var uid = user.uid;
-//     var providerData = user.providerData;
-//     // ...
-//   } else {
-//     // User is signed out.
-//     // ...
-//   }
-// });
 
 class LoginContainer extends Component {
 
@@ -45,14 +26,9 @@ class LoginContainer extends Component {
             });
     }
 
-    // join = () => {
-    // TODO write the sign-up form
-    // capture email, first name, last name, bio, password
-    // }
-
     render() {
         const { from } = this.props.location.state || { from: { pathname: '/' } };
-        const { authenticated, loginFormValues, signUp, ...props } = this.props;
+        const { authenticated, signUp, ...props } = this.props;
 
         if (authenticated) {
             return (
@@ -80,8 +56,18 @@ class LoginContainer extends Component {
     }
 }
 
-// PropTypes
-// TODO authenticated
+LoginContainer.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    location: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    authenticated: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool
+    ]).isRequired,
+    signUp: PropTypes.bool.isRequired,
+    values: PropTypes.oneOfType([
+        PropTypes.object
+    ]).isRequired
+};
 
 const mapStateToProps = state => ({
     authenticated: state.auth.userLogin,

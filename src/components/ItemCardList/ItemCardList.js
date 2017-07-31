@@ -20,17 +20,7 @@ const ItemCardList = ({ itemsData }) => (
 );
 
 ItemCardList.propTypes = {
-    itemsData: PropTypes.shape({
-        title: PropTypes.string,
-        available: PropTypes.bool,
-        imageurl: PropTypes.string,
-        itemowner: PropTypes.shape({
-            fullname: PropTypes.string,
-            email: PropTypes.string
-        }),
-        createdon: PropTypes.string,
-        tags: PropTypes.array
-    }).isRequired
+    itemsData: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default ItemCardList;

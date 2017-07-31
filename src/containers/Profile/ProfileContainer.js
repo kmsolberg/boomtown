@@ -28,7 +28,7 @@ ProfileContainer.propTypes = {
         loading: PropTypes.bool,
         user: PropTypes.object,
         items: PropTypes.object
-    }).isRequired
+    }).isRequired,
 };
 
 function mapStateToProps(state) {

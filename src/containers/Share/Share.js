@@ -64,14 +64,14 @@ const listOfTags = [
 ];
 
 
-let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, values }) => {
+let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, values, finished }) => {
 
     const renderMenuItems = (tags) => {
         return tags.map((tag) => (
             <MenuItem
                 key={tag.id}
                 insetChildren={true}
-                checked={values && values.tags.includes(tag.id)}
+                checked={values && values.values.tags.includes(tag.id)}
                 value={[tag.id]}
                 primaryText={tag.title}
             />
@@ -141,28 +141,10 @@ let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, han
                         <StepLabel>Confirm your things!</StepLabel>
                         <StepContent>
                             <p>Is it all ready to share?</p>
-                            <button type="submit">Submit!</button>
                             {renderStepActions(3)}
                         </StepContent>
                     </Step>
                 </Stepper>
-                {/* <button type="submit" disabled={pristine || submitting}>
-                    Submit
-                </button>
-                <button type="button" disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
-                </button> */}
-                {/* {finished && (
-                    <p style={{ margin: '20px 0', textAlign: 'center' }}>
-                        <a href="#" onClick={(event) => {
-                            event.preventDefault();
-                            this.setState({stepIndex: 0, finished: false});
-                        }}
-                        >
-                        Click here
-                        </a> reset the form.
-                    </p>
-                )}  */}
             </form>
         </div>
     );
@@ -172,7 +154,7 @@ function mapStateToProps(state) {
     return {
         submitting: state.form.isSubmitting,
         pristine: state.form.isPristine,
-        values: state.form.share
+        values: state.form.share,
     };
 }
 

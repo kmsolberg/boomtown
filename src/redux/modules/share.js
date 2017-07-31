@@ -20,7 +20,6 @@ export function setItemImageUrl(url) {
 
 // REDUCERS
 const initialState = {
-    //   formCompletion: false,
     stepIndex: 0,
     finished: false,
     imageUrl: ''
@@ -34,7 +33,7 @@ export function shareReducer(state = initialState, action) {
 
     case SET_ITEM_IMAGE_URL:
         return { ...state, imageUrl: action.payload };
-        
+
     default:
         return state;
     }

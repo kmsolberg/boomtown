@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import { Redirect } from 'react-router-dom';
 
 import { FirebaseAuth, FirebaseStorage } from '../../config/firebase';
 import Share from './Share';
@@ -61,7 +62,8 @@ class ShareContainer extends Component {
         })
         .then(({ data }) => {
             console.log('got data', data);
-        }).catch((error) => {
+        }).then()
+        .catch((error) => {
             console.log('there was an error sending the query', error);
         });
     }
@@ -76,7 +78,7 @@ class ShareContainer extends Component {
                     disableTouchRipple={true}
                     disableFocusRipple={true}
                     primary={true}
-                    onTouchTap={() => this.handleNext()}
+                    onTouchTap={stepIndex === 3 ? () => this.handleSubmit() : () => this.handleNext()}
                     style={{ marginRight: 12 }}
                 />
                 { step > 0 && (

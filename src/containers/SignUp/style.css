@@ -5,7 +5,7 @@
     justify-content: center;
 }
 
-h2 {
+.signup-form h2 {
     font-size: 2rem;
 }
 
@@ -13,7 +13,7 @@ h2 {
     width: 70%;
 }
 
-p {
+.signup-form p {
     padding: 1rem;
 }
 

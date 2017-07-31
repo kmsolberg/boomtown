@@ -63,7 +63,6 @@ const getItems = gql`
                 title
             }
             description
-            available
             borrower {
                 fullname
             }

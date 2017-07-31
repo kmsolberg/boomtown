@@ -15,14 +15,14 @@ const ItemCard = ({ itemData }) => (
 
     <li className="itemCardWrapper">
         <Card>
-            {!itemData.available ? (
-                <CardMedia
-                    overlay={<CardTitle subtitle="UNAVAILABLE" />}
-                >
+            {itemData.borrower === null ? (
+                <CardMedia>
                     <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>
             ) : (
-                <CardMedia>
+                <CardMedia
+                    overlay={<CardTitle subtitle="UNAVAILABLE" />}
+                >
                     <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>
             )}
@@ -41,9 +41,10 @@ const ItemCard = ({ itemData }) => (
             <CardText>
                 {itemData.description}
             </CardText>
-            itemData.available.length &&
+            itemData.borrower.length &&
+            
             <div className="borrow-button">
-                {itemData.available &&
+                {!itemData.borrower &&
                     <FlatButton
                         label="BORROW"
                         backgroundColor="rgb(38, 50, 56)"

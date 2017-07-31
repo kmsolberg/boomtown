@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { FirebaseAuth, FirebaseDB } from '../../config/firebase';
 
 import Login from './Login';
-import { showSignUp } from '../../redux/modules/authentication';
+import { showSignUp, loginError } from '../../redux/modules/authentication';
 
 // TODO
 
@@ -39,11 +39,8 @@ class LoginContainer extends Component {
             .catch((err) => {
                 if (err.code === 'auth/user-not-found') {
                     this.props.dispatch(showSignUp(true));
-                    // TODO write action
                 } else {
-                    console.log('Well done!');
-                    // this.props.dispatch(showLoginError(true));
-                    // TODO write action
+                    this.props.dispatch(loginError(true));
                 }
             });
     }

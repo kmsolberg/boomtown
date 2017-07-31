@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { FirebaseAuth } from '../../config/firebase';
 
@@ -18,14 +20,14 @@ class SignUpContainer extends Component {
         event.preventDefault();
         this.props.mutate({
             variables: {
-                fullname: 'Antony',
-                bio: 'word',
-                email: 'antony@rome.com',
-                password: 'password'
+                fullname: `${this.props.values.values.fullName}`,
+                bio: `${this.props.values.values.bio}`,
+                email: `${this.props.values.values.email}`,
+                password: `${this.props.values.values.password}`
             }
         })
             .then(({ data }) => {
-                this.login({ email: 'antony@rome.com', password: 'password' });
+                this.login({ email: `${this.props.values.values.email}`, password: `${this.props.values.values.password}` });
                 console.log('got data', data);
             }).catch((error) => {
                 console.log('there was an error sending the query', error);
@@ -33,6 +35,11 @@ class SignUpContainer extends Component {
     }
 
     render() {
+        if (this.props.authenticated) {
+            return (
+                <Redirect to="/" />
+            );
+        }
         return (
             <SignUp signUpUser={(event) => this.signUpUser(event)} />
         );
@@ -55,10 +62,18 @@ const addUser = gql`
             fullname
             email
             bio
+            password
         }
         }
 `;
 
+function mapStateToProps(state) {
+    return {
+        values: state.form.signup,
+        authenticated: state.auth.userLogin
+    };
+}
+
 const SignUpWithData = graphql(addUser)(SignUpContainer);
 
-export default SignUpWithData;
+export default connect(mapStateToProps)(SignUpWithData);

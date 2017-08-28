@@ -13,8 +13,6 @@ class ItemsContainer extends Component {
         const items = this.props.data.items;
         const filterTags = this.props.filterTags;
 
-        console.log(window.location);
-
         if (filterTags.length) {
             return items.filter(item => item.tags.map(tag => tag.title).find(title => filterTags.includes(title)));
         }
@@ -30,6 +28,7 @@ class ItemsContainer extends Component {
         return (
             <Items
                 itemsData={filterItemsData}
+                authenticated={this.props.authenticated}
             />
         );
     }
@@ -45,7 +44,8 @@ ItemsContainer.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        filterTags: state.items.filterTags
+        filterTags: state.items.filterTags,
+        authenticated: state.auth.userLogin
     };
 }
 
@@ -66,7 +66,7 @@ const getItems = gql`
             }
             description
             borrower {
-                fullname
+                id
             }
         }
     }

@@ -40,7 +40,7 @@ function mapStateToProps(state) {
 }
 
 const profilePage = gql`
-    query fetchProfile($id: ID!) {
+query fetchProfile($id: ID!) {
     user(id: $id) {
       fullname
       bio
@@ -60,9 +60,15 @@ const profilePage = gql`
             title
         }
         description
+        borrower {
+          id
+        }
       }
     borrowed {
       title
+      itemowner {
+          fullname
+      }
     }
     }
   }

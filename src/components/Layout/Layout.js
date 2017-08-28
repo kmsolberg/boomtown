@@ -25,7 +25,7 @@ const Layout = ({ children }) => (
             }
         </div>
         <p className="footer-text">
-            © 2017 Boomtown Corp. Al l Rights Reserved
+            © 2017 Boomtown Corp. All Rights Reserved
         </p>
     </div>
 );

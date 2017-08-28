@@ -9,9 +9,6 @@ import { showSignUp, loginError } from '../../redux/modules/authentication';
 
 class LoginContainer extends Component {
 
-    static propTypes = {
-    };
-
     login = ({ email, password }) => {
         // callback for authenticating user
         FirebaseAuth.signInWithEmailAndPassword(email, password)

@@ -11,7 +11,7 @@ const moment = require('moment');
 
 moment().format();
 
-const ItemCard = ({ itemData }) => (
+const ItemCard = ({ itemData, authenticated }) => (
 
     <li className="itemCardWrapper">
         <Card>
@@ -41,18 +41,18 @@ const ItemCard = ({ itemData }) => (
             <CardText>
                 {itemData.description}
             </CardText>
-            itemData.borrower.length &&
-            
-            <div className="borrow-button">
-                {!itemData.borrower &&
-                    <FlatButton
-                        label="BORROW"
-                        backgroundColor="rgb(38, 50, 56)"
-                        hoverColor="grey"
-                        className="borrow-btn"
-                    />
-                }
-            </div>
+            {!itemData.borrower && itemData.itemowner.id !== authenticated &&
+                <div className="borrow-button">
+                    {!itemData.borrower &&
+                        <FlatButton
+                            label="BORROW"
+                            backgroundColor="rgb(38, 50, 56)"
+                            hoverColor="grey"
+                            className="borrow-btn"
+                        />
+                    }
+                </div>
+            }
         </Card>
     </li>
 );

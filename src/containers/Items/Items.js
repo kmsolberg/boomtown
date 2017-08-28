@@ -4,8 +4,11 @@ import ItemCardList from '../../components/ItemCardList/';
 
 import './style.css';
 
-const Items = ({ itemsData }) => (
-    <ItemCardList itemsData={itemsData} />
+const Items = ({ itemsData, authenticated }) => (
+    <ItemCardList
+        itemsData={itemsData}
+        authenticated={authenticated}
+    />
 );
 
 Items.propTypes = {

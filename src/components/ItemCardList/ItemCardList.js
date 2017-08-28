@@ -8,19 +8,19 @@ import './style.css';
 
 // Masonry
 
-const ItemCardList = ({ itemsData }) => (
+const ItemCardList = ({ itemsData, authenticated }) => (
     <Masonry
         className={'itemCardListWrapper'}
         elementType={'ul'}
     >
         { itemsData && itemsData.map((item) => (
-            <ItemCard itemData={item} key={item.id} />
+            <ItemCard itemData={item} key={item.id} authenticated={authenticated} />
         )) }
     </Masonry>
 );
 
 ItemCardList.propTypes = {
-    itemsData: PropTypes.arrayOf(PropTypes.object).isRequired
+    itemsData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ItemCardList;

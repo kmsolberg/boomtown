@@ -43,7 +43,7 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
     <SelectField
-        multiple={true}
+        multiple
         floatingLabelText={label}
         errorText={touched && error}
         {...input}
@@ -69,8 +69,8 @@ let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, han
         return tags.map((tag) => (
             <MenuItem
                 key={tag.id}
-                insetChildren={true}
-                checked={values && values.tags.includes(tag.id) > -1}
+                insetChildren
+                checked={values && values.tags}
                 value={[tag.id]}
                 primaryText={tag.title}
             />

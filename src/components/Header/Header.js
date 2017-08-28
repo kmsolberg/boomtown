@@ -12,39 +12,47 @@ import SelectField from '../SelectField/';
 import './style.css';
 import { FirebaseAuth } from '../../config/firebase';
 
-const Header = ({ dispatch, filterTags, authenticated }) => (
-    <AppBar
-        style={{ 'background-color': 'white' }}
-        iconElementLeft={
-            <div className="logo-select">
-                <Link to={'/'} >
-                    <img src={icon} alt="boomtown logo" className="logo" />
-                </Link>
-                <SelectField
-                    dispatch={dispatch}
-                    onChangeAction={filterItems}
-                    filterTags={filterTags}
+const Header = ({ dispatch, filterTags, authenticated }) => {
+    if (authenticated) {
+        return (
+            <div>
+                <AppBar
+                    style={{ 'background-color': 'white' }}
+                    iconElementLeft={
+                        <div className="logo-select">
+                            <Link to={'/'} >
+                                <img src={icon} alt="boomtown logo" className="logo" />
+                            </Link>
+                            <SelectField
+                                dispatch={dispatch}
+                                onChangeAction={filterItems}
+                                filterTags={filterTags}
+                            />
+                        </div>
+                    }
+                    iconElementRight={
+                        <div className="buttons">
+                            <RaisedButton
+                                label="My Profile"
+                                backgroundColor="rgb(129, 212, 250)"
+                                labelColor="white"
+                                containerElement={<Link to={`/profile/${authenticated}`} />}
+                            />
+                            <RaisedButton
+                                label="Logout"
+                                onTouchTap={() => FirebaseAuth.signOut()}
+                                backgroundColor="rgb(38, 50, 56)"
+                                labelColor="white"
+                            />
+                        </div>
+                    }
                 />
             </div>
-        }
-        iconElementRight={
-            <div className="buttons">
-                <RaisedButton
-                    label="My Profile"
-                    backgroundColor="rgb(129, 212, 250)"
-                    labelColor="white"
-                    containerElement={<Link to={`/profile/${authenticated}`} />}
-                />
-                <RaisedButton
-                    label="Logout"
-                    onTouchTap={() => FirebaseAuth.signOut()}
-                    backgroundColor="rgb(38, 50, 56)"
-                    labelColor="white"
-                />
-            </div>
-        }
-    />
-);
+        );
+    } else {
+        return null;
+    }
+};
 
 function mapStateToProps(state) {
     return {

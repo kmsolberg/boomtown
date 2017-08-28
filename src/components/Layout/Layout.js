@@ -14,16 +14,18 @@ const Layout = ({ children }) => (
         </div>
         <div className="appContent">
             {children}
-            <FloatingActionButton
-                backgroundColor="rgb(38, 50, 56)"
-                className="share-button"
-                href="/share"
-            >
-                <ContentAdd />
-            </FloatingActionButton>
+            {window.location.pathname === '/' &&
+                <FloatingActionButton
+                    backgroundColor="rgb(38, 50, 56)"
+                    className="share-button"
+                    href="/share"
+                >
+                    <ContentAdd />
+                </FloatingActionButton>
+            }
         </div>
         <p className="footer-text">
-            © 2017 Boomtown Corp. All Rights Reserved
+            © 2017 Boomtown Corp. Al l Rights Reserved
         </p>
     </div>
 );

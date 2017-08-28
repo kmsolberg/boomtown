@@ -44,8 +44,7 @@ class ShareContainer extends Component {
             });
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = () => {
         this.props.mutate({
             variables: {
                 title: `${this.props.values.values.title}`,
@@ -61,7 +60,7 @@ class ShareContainer extends Component {
             console.log('got data', data);
         }).catch((error) => {
             console.log('there was an error sending the query', error);
-        }).dispatch(reset('share'));
+        });
     }
 
     renderStepActions = (step) => {
@@ -71,9 +70,9 @@ class ShareContainer extends Component {
             <div style={{ margin: '12px 0' }}>
                 <RaisedButton
                     label={stepIndex === 3 ? 'Finish' : 'Next'}
-                    disableTouchRipple={true}
-                    disableFocusRipple={true}
-                    primary={true}
+                    disableTouchRipple
+                    disableFocusRipple
+                    primary
                     onTouchTap={stepIndex === 3 ? () => this.handleSubmit() : () => this.handleNext()}
                     style={{ marginRight: 12 }}
                 />
@@ -81,8 +80,8 @@ class ShareContainer extends Component {
                     <FlatButton
                         label="Back"
                         disabled={stepIndex === 0}
-                        disableTouchRipple={true}
-                        disableFocusRipple={true}
+                        disableTouchRipple
+                        disableFocusRipple
                         onTouchTap={() => this.handlePrev()}
                     />
                 ) }
@@ -136,6 +135,7 @@ const addItem = gql`
             }
             imageurl
             tags {
+                title
                 id
             }
         }

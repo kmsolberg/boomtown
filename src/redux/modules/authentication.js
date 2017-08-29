@@ -1,8 +1,6 @@
 const LOGIN_ERROR = 'LOGIN_ERROR';
 const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILES';
 const SHOW_SIGN_UP = 'SHOW_SIGN_UP';
-const LOAD_USER = 'LOAD_USER';
-const DONE_LOADING_USER = 'DONE_LOADING_USER';
 
 export function loginError(show) {
     return {

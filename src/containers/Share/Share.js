@@ -64,14 +64,14 @@ const listOfTags = [
 ];
 
 
-let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, values }) => {
+let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, shareForm }) => {
     const renderMenuItems = (tags) => {
         return tags.map((tag) => (
             <MenuItem
                 key={tag.id}
                 insetChildren
-                checked={values && values.tags}
-                value={[tag.id]}
+                checked={shareForm && shareForm.values && shareForm.values.tags.includes(tag.id)}
+                value={tag.id}
                 primaryText={tag.title}
             />
         ));
@@ -83,7 +83,7 @@ let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, han
         <div style={{ maxWidth: 380, maxHeight: 400, margin: 'auto' }}>
             <form onSubmit={(event) => {
                 event.preventDefault();
-                handleSubmit(values);
+                handleSubmit(shareForm.values);
             }}
             >
                 <Stepper activeStep={stepIndex} orientation="vertical">
@@ -164,7 +164,7 @@ Share.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        values: state.form.share,
+        shareForm: state.form.share,
     };
 }
 

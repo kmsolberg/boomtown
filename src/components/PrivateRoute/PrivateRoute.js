@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const PrivateRoute = ({ component: Component, authenticated, ...rest, loadingUser }) => (
+const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
     <Route
         {...rest}
         render={props => (

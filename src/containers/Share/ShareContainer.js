@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {reset} from 'redux-form';
+import { reset } from 'redux-form';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
@@ -56,11 +56,11 @@ class ShareContainer extends Component {
                 )
             }
         })
-        .then(({ data }) => {
-            console.log('got data', data);
-        }).catch((error) => {
-            console.log('there was an error sending the query', error);
-        });
+            .then(({ data }) => {
+                console.log('got data', data);
+            }).catch((error) => {
+                console.log('there was an error sending the query', error);
+            });
     }
 
     renderStepActions = (step) => {
@@ -76,7 +76,7 @@ class ShareContainer extends Component {
                     onTouchTap={stepIndex === 3 ? () => this.handleSubmit() : () => this.handleNext()}
                     style={{ marginRight: 12 }}
                 />
-                { step > 0 && (
+                {step > 0 && (
                     <FlatButton
                         label="Back"
                         disabled={stepIndex === 0}
@@ -84,7 +84,7 @@ class ShareContainer extends Component {
                         disableFocusRipple
                         onTouchTap={() => this.handlePrev()}
                     />
-                ) }
+                )}
             </div>
         );
     }
@@ -99,6 +99,7 @@ class ShareContainer extends Component {
                 selectImage={this.selectImage}
                 handleImageUpload={this.handleImageUpload}
                 handleSubmit={this.handleSubmit}
+                shareForm={this.props.values}
             />
         );
     }
@@ -106,7 +107,7 @@ class ShareContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        values: state.form.share,
+        shareForm: state.form.share,
         stepIndex: state.share.stepIndex,
         authenticated: state.auth.userLogin,
         imageurl: state.share.imageUrl,

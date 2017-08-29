@@ -12,7 +12,7 @@ import SelectField from '../SelectField/';
 import './style.css';
 import { FirebaseAuth } from '../../config/firebase';
 
-const Header = ({ dispatch, filterTags, authenticated }) => {
+const Header = ({ dispatch, filterTags, authenticated, location }) => {
     if (authenticated) {
         return (
             <div>
@@ -23,11 +23,13 @@ const Header = ({ dispatch, filterTags, authenticated }) => {
                             <Link to={'/'} >
                                 <img src={icon} alt="boomtown logo" className="logo" />
                             </Link>
-                            <SelectField
-                                dispatch={dispatch}
-                                onChangeAction={filterItems}
-                                filterTags={filterTags}
-                            />
+                            {location.pathname === '/' &&
+                                <SelectField
+                                    dispatch={dispatch}
+                                    onChangeAction={filterItems}
+                                    filterTags={filterTags}
+                                />
+                            }
                         </div>
                     }
                     iconElementRight={
@@ -57,7 +59,8 @@ const Header = ({ dispatch, filterTags, authenticated }) => {
 function mapStateToProps(state) {
     return {
         filterTags: state.items.filterTags,
-        authenticated: state.auth.userLogin
+        authenticated: state.auth.userLogin,
+        location: state.router.location,
     };
 }
 

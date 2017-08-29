@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import { routerReducer } from 'react-router-redux';
+
 import { itemsReducer } from './modules/items';
 import { profileReducer } from './modules/profile';
 import { authReducer } from './modules/authentication';
@@ -14,4 +16,5 @@ export default combineReducers({
     auth: authReducer,
     share: shareReducer,
     form: formReducer,
+    router: routerReducer,
 });

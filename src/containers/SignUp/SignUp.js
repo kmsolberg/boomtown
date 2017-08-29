@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
@@ -63,13 +64,14 @@ let SignUp = ({ signUpUser }) => (
                     component={renderTextField}
                 /><br />
                 <div className="signup-buttons">
-                    <RaisedButton
-                        label="NO THANKS!"
-                        type="submit"
-                        href="/login"
-                        backgroundColor="black"
-                        labelColor="rgb(129, 212, 250)"
-                    />
+                    <Link to={'/login'} >
+                        <RaisedButton
+                            label="NO THANKS!"
+                            type="submit"
+                            backgroundColor="black"
+                            labelColor="rgb(129, 212, 250)"
+                        />
+                    </Link>
                     <RaisedButton
                         label="JOIN!"
                         type="submit"

@@ -15,7 +15,7 @@ const ItemCard = ({ itemData, authenticated }) => (
 
     <li className="itemCardWrapper">
         <Card>
-            {itemData.borrower === null ? (
+            {!itemData.borrower ? (
                 <CardMedia>
                     <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-    BrowserRouter as Router,
-    } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { ApolloProvider } from 'react-apollo';
@@ -19,7 +18,7 @@ import { updateUserProfile } from './redux/modules/authentication';
 import Layout from './components/Layout';
 import Routes from './routes/Routes';
 
-FirebaseAuth.onAuthStateChanged(function(user) {
+FirebaseAuth.onAuthStateChanged(function (user) {
     if (user) {
         store.dispatch(updateUserProfile(user.uid));
     } else {
@@ -27,16 +26,18 @@ FirebaseAuth.onAuthStateChanged(function(user) {
     }
 });
 
+const history = createHistory();
+
 injectTapEventPlugin();
 
 const Boomtown = () => (
     <MuiThemeProvider muiTheme={muiTheme}>
         <ApolloProvider client={client} store={store}>
-            <Router>
+            <ConnectedRouter history={history}>
                 <Layout>
                     <Routes />
                 </Layout>
-            </Router>
+            </ConnectedRouter>
         </ApolloProvider>
     </MuiThemeProvider>
 );

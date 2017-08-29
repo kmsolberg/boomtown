@@ -38,8 +38,31 @@ ItemsContainer.propTypes = {
     filterTags: PropTypes.arrayOf(PropTypes.string).isRequired,
     data: PropTypes.shape({
         loading: PropTypes.bool.isRequired,
-        items: PropTypes.arrayOf(PropTypes.object).isRequired
-    }).isRequired
+        items: PropTypes.arrayOf(PropTypes.shape({
+            _typename: String.PropTypes,
+            borrower: PropTypes.shape({
+                _typename: PropTypes.string,
+                fullname: PropTypes.string,
+                id: PropTypes.string
+            }),
+            createdon: PropTypes.string,
+            description: PropTypes.string,
+            id: PropTypes.string,
+            imageurl: PropTypes.string,
+            itemowner: PropTypes.shape({
+                _typename: PropTypes.string,
+                email: PropTypes.string,
+                fullname: PropTypes.string,
+                id: PropTypes.string
+            }),
+            tags: PropTypes.arrayOf(PropTypes.shape({
+                _typename: PropTypes.string,
+                title: PropTypes.string,
+            })),
+            title: PropTypes.string
+        })),
+    }).isRequired,
+    authenticated: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -67,6 +90,7 @@ const getItems = gql`
             description
             borrower {
                 id
+                fullname
             }
         }
     }

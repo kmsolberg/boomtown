@@ -6,7 +6,6 @@ import MenuItem from 'material-ui/MenuItem';
 
 const selectField = ({ filterTags, dispatch, onChangeAction }) => {
     const tags = ['Electronics', 'Household Items', 'Musical Instruments', 'Physical Media', 'Recreational Equipment', 'Sporting Goods', 'Tools'];
-    { console.log(window.location) }
     return (
         <div>
             <SelectField

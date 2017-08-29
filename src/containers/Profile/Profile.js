@@ -9,7 +9,21 @@ const Profile = ({ usersData }) => (
 );
 
 Profile.propTypes = {
-    usersData: PropTypes.shape(PropTypes.object).isRequired
+    usersData: PropTypes.shape({
+        bio: PropTypes.string,
+        email: PropTypes.string,
+        fullname: PropTypes.string,
+        id: PropTypes.string,
+        _typename: PropTypes.string,
+        borrowed: PropTypes.arrayOf(PropTypes.shape({
+            _typename: PropTypes.string,
+            title: PropTypes.string,
+            itemowner: PropTypes.shape({
+                _typename: PropTypes.string,
+                fullname: PropTypes.string,
+            })
+        })),
+    }).isRequired
 };
 
 export default Profile;

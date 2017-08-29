@@ -19,7 +19,7 @@ const ProfileCard = ({ usersData }) => (
                     <div className="borrowing-info">
                         <h3>Currently Borrowing:</h3>
                         {usersData.borrowed.map((item) => (
-                            <li key={item.id}>{item.title} from {item.itemowner.fullname}</li>
+                            <li key={item.title}>{item.title} from {item.itemowner.fullname}</li>
                         )
                         )}
                     </div>

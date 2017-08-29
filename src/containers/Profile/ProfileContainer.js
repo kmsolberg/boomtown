@@ -8,64 +8,63 @@ import Profile from './Profile';
 import Loader from '../../components/Loader/';
 import ItemCardList from '../../components/ItemCardList/';
 
-const ProfileContainer = ({ data }) => {
+const ProfileContainer = ({ data, location }) => {
     if (data.loading) return <Loader />;
     return (
         <div className="profile-page">
             <Profile
                 usersData={data.user}
             />
-            <ItemCardList itemsData={data.user.items} />
+            <ItemCardList
+                itemsData={data.user.items}
+                location={location}
+            />
         </div>
     );
 };
 
-ProfileContainer.defaultProps = {
-
-}
-
-// ProfileContainer.propTypes = {
-//     data: PropTypes.shape({
-//         loading: PropTypes.bool,
-//         user: PropTypes.shape({
-//             bio: PropTypes.string,
-//             email: PropTypes.string,
-//             fullname: PropTypes.string,
-//             id: PropTypes.string,
-//             _typename: PropTypes.string,
-//             borrowed: PropTypes.arrayOf({
-//                 object: PropTypes.shape({
-//                     _typename: PropTypes.string,
-//                     title: PropTypes.string,
-//                     itemowner: PropTypes.shape({
-//                         _typename: PropTypes.string,
-//                         fullname: PropTypes.string,
-//                     })
-//                 })
-//             }),
-//             items: PropTypes.shape({
-//                 _typename: PropTypes.string,
-//                 borrower: PropTypes.string,
-//                 createdon: PropTypes.string,
-//                 description: PropTypes.string,
-//                 id: PropTypes.number,
-//                 imageurl: PropTypes.string,
-//                 itemowner: PropTypes.shape({
-//                     _typename: PropTypes.string,
-//                     email: PropTypes.string,
-//                     fullname: PropTypes.string,
-//                     id: PropTypes.string,
-//                 }),
-//                 tags: PropTypes.arrayOf(PropTypes.shape({
-//                     _typename: PropTypes.string,
-//                     title: PropTypes.string
-//                 })),
-//                 title: PropTypes.string
-//             })
-//         }),
-//         items: PropTypes.object
-//     }).isRequired,
-// };
+ProfileContainer.propTypes = {
+    data: PropTypes.shape({
+        loading: PropTypes.bool,
+        user: PropTypes.shape({
+            bio: PropTypes.string,
+            email: PropTypes.string,
+            fullname: PropTypes.string,
+            id: PropTypes.string,
+            _typename: PropTypes.string,
+            borrowed: PropTypes.arrayOf(PropTypes.shape({
+                _typename: PropTypes.string,
+                title: PropTypes.string,
+                itemowner: PropTypes.shape({
+                    _typename: PropTypes.string,
+                    fullname: PropTypes.string,
+                })
+            })),
+            items: PropTypes.arrayOf(PropTypes.shape({
+                _typename: PropTypes.string,
+                borrower: PropTypes.shape({
+                    id: PropTypes.string,
+                    fullname: PropTypes.string
+                }),
+                createdon: PropTypes.string,
+                description: PropTypes.string,
+                id: PropTypes.string,
+                imageurl: PropTypes.string,
+                itemowner: PropTypes.shape({
+                    _typename: PropTypes.string,
+                    email: PropTypes.string,
+                    fullname: PropTypes.string,
+                    id: PropTypes.string,
+                }),
+                tags: PropTypes.arrayOf(PropTypes.shape({
+                    _typename: PropTypes.string,
+                    title: PropTypes.string
+                })),
+                title: PropTypes.string
+            }))
+        }),
+    }).isRequired,
+};
 
 const profilePage = gql`
 query fetchProfile($id: ID!) {
@@ -90,6 +89,7 @@ query fetchProfile($id: ID!) {
         description
         borrower {
           id
+          fullname
         }
       }
     borrowed {
@@ -105,6 +105,7 @@ query fetchProfile($id: ID!) {
 function mapStateToProps(state) {
     return {
         loading: state.profiles.loading,
+        location: state.router.location,
     };
 }
 

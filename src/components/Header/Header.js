@@ -70,7 +70,10 @@ Header.propTypes = {
     authenticated: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.bool
-    ]).isRequired
+    ]).isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string
+    }).isRequired
 };
 
 export default connect(mapStateToProps)(Header);

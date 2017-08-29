@@ -21,7 +21,7 @@ const ItemCard = ({ itemData, authenticated }) => (
                 </CardMedia>
             ) : (
                 <CardMedia
-                    overlay={<CardTitle subtitle="UNAVAILABLE" />}
+                    overlay={<CardTitle subtitle={`Borrowed by ${itemData.borrower.fullname}`} />}
                 >
                     <img src={itemData.imageurl} alt={itemData.title} />
                 </CardMedia>
@@ -59,16 +59,29 @@ const ItemCard = ({ itemData, authenticated }) => (
 
 ItemCard.propTypes = {
     itemData: PropTypes.shape({
-        title: PropTypes.string,
-        available: PropTypes.bool,
-        imageurl: PropTypes.string,
-        itemowner: PropTypes.shape({
+        _typename: PropTypes.string,
+        borrower: PropTypes.shape({
+            _typename: PropTypes.string,
             fullname: PropTypes.string,
-            email: PropTypes.string
+            id: PropTypes.string
         }),
         createdon: PropTypes.string,
-        tags: PropTypes.array
-    }).isRequired
+        description: PropTypes.string,
+        id: PropTypes.string,
+        imageurl: PropTypes.string,
+        itemowner: PropTypes.shape({
+            _typename: PropTypes.string,
+            email: PropTypes.string,
+            fullname: PropTypes.string,
+            id: PropTypes.string,
+        }),
+        tags: PropTypes.arrayOf(PropTypes.shape({
+            _typename: PropTypes.string,
+            title: PropTypes.string
+        })),
+        title: PropTypes.string
+    }).isRequired,
+    authenticated: PropTypes.string.isRequired,
 };
 
 export default ItemCard;

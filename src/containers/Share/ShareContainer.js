@@ -64,7 +64,7 @@ class ShareContainer extends Component {
     }
 
     renderStepActions = (step) => {
-        const { stepIndex } = this.props;
+        const { stepIndex, submitting } = this.props;
 
         return (
             <div style={{ margin: '12px 0' }}>
@@ -75,6 +75,7 @@ class ShareContainer extends Component {
                     primary
                     onTouchTap={stepIndex === 3 ? () => this.handleSubmit() : () => this.handleNext()}
                     style={{ marginRight: 12 }}
+                    disabled={submitting}
                 />
                 {step > 0 && (
                     <FlatButton

@@ -15,7 +15,7 @@ networkInterface.use([{
             req.options.headers = {}; // Create header object if needed
         }
         const token = await FirebaseAuth.currentUser.getIdToken(true);
-        req.options.headers['Authorization'] = token;
+        req.options.headers.Authorization = token;
         return next();
     }
 }]);

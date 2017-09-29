@@ -8,7 +8,7 @@ import Profile from './Profile';
 import Loader from '../../components/Loader/';
 import ItemCardList from '../../components/ItemCardList/';
 
-const ProfileContainer = ({ data, location }) => {
+const ProfileContainer = ({ data }) => {
     if (data.loading) return <Loader />;
     return (
         <div className="profile-page">
@@ -17,7 +17,6 @@ const ProfileContainer = ({ data, location }) => {
             />
             <ItemCardList
                 itemsData={data.user.items}
-                location={location}
             />
         </div>
     );

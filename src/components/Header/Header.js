@@ -51,9 +51,8 @@ const Header = ({ dispatch, filterTags, authenticated, location }) => {
                 />
             </div>
         );
-    } else {
-        return null;
     }
+    return null;
 };
 
 function mapStateToProps(state) {

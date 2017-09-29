@@ -16,29 +16,47 @@ import MenuItem from 'material-ui/MenuItem';
 
 import './style.css';
 
+// const validate = values => {
+//     const errors = {};
+//     const requiredFields = [
+//         'title',
+//         'description',
+//         'tags'
+//     ];
+//     requiredFields.forEach(field => {
+//         if (!values[field]) {
+//             errors[field] = 'Required';
+//         }
+//     });
+//     return errors;
+// };
+
 const validate = values => {
     const errors = {};
-    const requiredFields = [
-        'title',
-        'description',
-        'tags'
-    ];
-    requiredFields.forEach(field => {
-        if (!values[field]) {
-            errors[field] = 'Required';
-        }
-    });
+    if (!values.username) {
+        errors.username = 'Required';
+    } else if (values.username.length > 15) {
+        errors.username = 'Must be 15 characters or less';
+    }
+    if (!values.email) {
+        errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address';
+    }
     return errors;
 };
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-    <TextField
-        hintText={label}
-        floatingLabelText={label}
-        errorText={touched && error}
-        {...input}
-        {...custom}
-    />
+    <div>
+        <TextField
+            hintText={label}
+            floatingLabelText={label}
+            errorText={touched && error}
+            {...input}
+            {...custom}
+        />
+        {...touched && ((error && <span>{error}</span>))}
+    </div>
 );
 
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
@@ -64,13 +82,27 @@ const listOfTags = [
 ];
 
 
-let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, handleSubmit, shareForm }) => {
+let Share = (props) => {
+    const {
+        stepIndex,
+        renderStepActions,
+        handleImageUpload,
+        selectImage,
+        handleSubmit,
+        shareForm
+    } = props;
+
     const renderMenuItems = (tags) => {
         return tags.map((tag) => (
             <MenuItem
                 key={tag.id}
                 insetChildren
-                checked={shareForm && shareForm.values && shareForm.values.tags.includes(tag.id)}
+                checked={
+                    shareForm &&
+                    shareForm.values &&
+                    shareForm.values.tags &&
+                    shareForm.values.tags.includes(tag.id)
+                }
                 value={tag.id}
                 primaryText={tag.title}
             />
@@ -149,17 +181,26 @@ let Share = ({ stepIndex, renderStepActions, handleImageUpload, selectImage, han
     );
 };
 
-Share.propTypes = {
+renderTextField.propTypes = {
     input: PropTypes.oneOfType([PropTypes.object]).isRequired,
     label: PropTypes.string.isRequired,
     meta: PropTypes.string.isRequired,
+};
+
+renderSelectField.propTypes = {
+    children: PropTypes.shape(PropTypes.object).isRequired,
+    values: PropTypes.arrayOf(PropTypes.object).isRequired,
+    input: PropTypes.oneOfType([PropTypes.object]).isRequired,
+    label: PropTypes.string.isRequired,
+    meta: PropTypes.string.isRequired,
+};
+
+Share.propTypes = {
     stepIndex: PropTypes.number.isRequired,
     renderStepActions: PropTypes.func.isRequired,
     handleImageUpload: PropTypes.func.isRequired,
     selectImage: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    children: PropTypes.shape(PropTypes.object).isRequired,
-    values: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 function mapStateToProps(state) {
@@ -170,9 +211,7 @@ function mapStateToProps(state) {
 
 Share = reduxForm({
     form: 'share',
-    validate
+    validate,
 })(Share);
-
-// To Do: Prop types go here...
 
 export default connect(mapStateToProps)(Share);

@@ -8,7 +8,7 @@ import './style.css';
 
 // Masonry
 
-const ItemCardList = ({ itemsData, authenticated, location }) => (
+const ItemCardList = ({ itemsData, authenticated }) => (
     <Masonry
         className={'itemCardListWrapper'}
         elementType={'ul'}
@@ -18,7 +18,6 @@ const ItemCardList = ({ itemsData, authenticated, location }) => (
                 itemData={item}
                 key={item.id}
                 authenticated={authenticated}
-                location={location}
             />
         ))}
     </Masonry>
@@ -48,6 +47,7 @@ ItemCardList.propTypes = {
         })),
         title: PropTypes.string
     })).isRequired,
+    authenticated: PropTypes.string.isRequired,
 };
 
 export default ItemCardList;
